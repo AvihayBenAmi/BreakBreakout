@@ -13,6 +13,7 @@ public class Instructions extends JPanel {
         back = new JButton("Back to Menu");
         this.add(back);
         back.setBounds(0, 0, 100, 50);
+        back.setFont(new Font("Arial", Font.BOLD, 10));
 
         back.addActionListener(new ActionListener() {
             @Override

@@ -112,7 +112,7 @@ public class Game extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Scanner scanner = new Scanner(System.in);
-                playerName = e.getActionCommand();
+                playerName = textField.getText();
                 frameOfText.setVisible(false);
             }
         });
@@ -146,7 +146,7 @@ public class Game extends JPanel {
         g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("points: " + pointsCounter, 3, 12);
+        g.drawString("Name: "+playerName+" points: " + pointsCounter, 3, 12);
         if (this.playerName != "") {
             if (arrayBricks.size() > 0) {
                 checkIntersectsWithPlate();
@@ -183,12 +183,12 @@ public class Game extends JPanel {
 
     private void looseGameMassage() {
         if (yDeltaBall > yDelta + 25) {
-            JOptionPane.showConfirmDialog(this, "Game Over", "Game Over", JOptionPane.CLOSED_OPTION);
+            JOptionPane.showConfirmDialog(this, playerName+", Game Over! \n Your Score is: "+pointsCounter, "Game Over", JOptionPane.CLOSED_OPTION);
         }
     }
 
     private void winGameMassage() {
-        JOptionPane.showConfirmDialog(this, "You Winning!", "Winner!", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showConfirmDialog(this, playerName+", You Won! \n Your Score is: "+pointsCounter, "Winner!", JOptionPane.PLAIN_MESSAGE);
     }
 
     public void calculatePoints(Bricks brick) {
