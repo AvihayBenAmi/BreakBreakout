@@ -1,4 +1,7 @@
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,12 +17,16 @@ public class BackgroundMenu extends JPanel {
     private boolean show;
     private JButton[] jButtons = new JButton[4];
     private Image background;
+    private boolean interrupted;
 
     public BackgroundMenu(Window window) {
         this.show = true;
         addBackgroundPicture();
         addAndManageButtons(window);
         addByLine();
+        //playSound();
+        this.interrupted=false;
+        thread.start();
     }
 
     public void addBackgroundPicture() {
@@ -48,23 +55,28 @@ public class BackgroundMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.startGame();
+                buttonSound();
+                interrupted=true;
             }
         });
         jButtons[1].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.openInstructoins();
+                buttonSound();
             }
         });
         jButtons[2].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.openScoreBoard();
+                buttonSound();
             }
         });
         jButtons[3].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                buttonSound();
                 System.exit(0);
             }
         });
@@ -79,10 +91,38 @@ public class BackgroundMenu extends JPanel {
         this.add(by);
     }
 
+        private Thread thread= new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    if (!interrupted){
+                    Clip clip = AudioSystem.getClip();
+                    AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("8bit-music-for-game-68698.wav")));
+                    clip.open(inputStream);
+                    clip.start();}
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         if (this.show) {
             graphics.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+
+    public static synchronized void buttonSound(){
+        try{
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("button-124476.wav")));
+            clip.open(inputStream);
+            clip.start();
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

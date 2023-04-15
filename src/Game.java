@@ -1,4 +1,7 @@
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -165,6 +168,7 @@ public class Game extends JPanel {
 
     private void checkIntersectsWithPlate() {
         if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17).intersects(new Rectangle(xDelta, yDelta, 100, 25))) {
+            intersectsSound();
             yDir *= -1;
         }
     }
@@ -173,6 +177,7 @@ public class Game extends JPanel {
         for (int i = 0; i < arrayBricks.size(); i++) {
             if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17).intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
                     arrayBricks.get(i).getHeight())) {
+                intersectsSound();
                 System.out.println("HIT THE BRICK" + "i= " + i);
                 calculatePoints(arrayBricks.get(i));
                 arrayBricks.remove(i);
@@ -183,16 +188,49 @@ public class Game extends JPanel {
 
     private void looseGameMassage() {
         if (yDeltaBall > yDelta + 25) {
-            JOptionPane.showConfirmDialog(this, playerName+", Game Over! \n Your Score is: "+pointsCounter, "Game Over", JOptionPane.CLOSED_OPTION);
+            try{
+                Clip clip = AudioSystem.getClip();
+                AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("game-over-arcade-6435 (1).wav")));
+                clip.open(inputStream);
+                clip.start();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            JOptionPane.showConfirmDialog(this, playerName+", Game Over! \n Your Score is: "+pointsCounter, "Game Over",JOptionPane.CLOSED_OPTION);
+
         }
+
+
     }
 
     private void winGameMassage() {
+        try{
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("winsquare-6993.wav")));
+            clip.open(inputStream);
+            clip.start();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         JOptionPane.showConfirmDialog(this, playerName+", You Won! \n Your Score is: "+pointsCounter, "Winner!", JOptionPane.PLAIN_MESSAGE);
+
     }
 
     public void calculatePoints(Bricks brick) {
         pointsCounter += brick.getPoints();
+    }
+    private void intersectsSound(){
+        try{
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
+            clip.open(inputStream);
+            clip.start();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

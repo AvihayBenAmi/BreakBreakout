@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="22:42 13/04">
+    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="15.04 20:07">
+      <change afterPath="$PROJECT_DIR$/src/8bit-music-for-game-68698.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/button-124476.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/coin-collect-retro-8-bit-sound-effect-145251.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game-over-arcade-6435 (1).wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/winsquare-6993.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BackgroundMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BackgroundMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scoreboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +89,7 @@
       <workItem from="1681238982927" duration="4290000" />
       <workItem from="1681287889181" duration="7667000" />
       <workItem from="1681367304306" duration="41633000" />
-      <workItem from="1681561518057" duration="12907000" />
+      <workItem from="1681561518057" duration="18490000" />
     </task>
     <task id="LOCAL‎-00001" summary="22:42 13/04">
       <created>1681414987940</created>
@@ -108,7 +112,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1681577717254</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎-00004" summary="15.04 20:07">
+      <created>1681578458961</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1681578458961</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,7 +138,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="22:42 13/04" />
-    <option name="LAST_COMMIT_MESSAGE" value="22:42 13/04" />
+    <MESSAGE value="15.04 20:07" />
+    <option name="LAST_COMMIT_MESSAGE" value="15.04 20:07" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -139,7 +151,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Game.java</url>
-          <line>114</line>
+          <line>117</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
