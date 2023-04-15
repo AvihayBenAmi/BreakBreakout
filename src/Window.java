@@ -20,13 +20,6 @@ public class Window extends JFrame {
         this.setTitle("Brick Breaker");
         openBackgroundMenu();
 
-
-//        MainScene scene = new MainScene(); // הפעלת מחלקה סצנה ראשית
-//        this.add(scene); // הוספת סצנה
-//        scene.setBounds(WIDTH / 5, 0, WIDTH / 5 * 4, HEIGHT); // להגדיר כמה גודל הסצנה תתפוס
-//        Menu menu = new Menu(scene); // יצירת משתנה מטיפוס תפריט
-//        this.add(menu); // הוספת התפריט
-//        menu.setBounds(0, 0, WIDTH / 5, HEIGHT); // הגדרת התפריט בחלון
     }
 
     public void openBackgroundMenu() {
@@ -34,6 +27,7 @@ public class Window extends JFrame {
         this.background = new BackgroundMenu(this);
         this.add(background);
         background.setBounds(0, 0, WIDTH, HEIGHT);
+        background.requestFocus();
         if (instractions != null)
             this.remove(instractions);
         if (game != null)
@@ -56,6 +50,8 @@ public class Window extends JFrame {
         this.instractions = new Instractions(this);
         this.add(instractions);
         this.instractions.setBounds(0, 0, WIDTH, HEIGHT);
+        instractions.requestFocus();
+
     }
 
     public void openScoreBoard() {
@@ -63,5 +59,7 @@ public class Window extends JFrame {
         this.scoreBoard = new Scoreboard(this);
         this.add(scoreBoard);
         this.scoreBoard.setBounds(0, 0, WIDTH, HEIGHT);
+        scoreBoard.requestFocus();
+
     }
 }

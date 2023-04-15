@@ -13,19 +13,26 @@ public class BackgroundMenu extends JPanel {
     private final int HIGHT_RIGHT_BOTTON = 50;
     private boolean show;
     private JButton[] jButtons = new JButton[4];
-
-
     private Image background;
 
     public BackgroundMenu(Window window) {
         this.show = true;
+        addBackgroundPicture();
+        addAndManageButtons(window);
+        addByLine();
+    }
+
+    public void addBackgroundPicture() {
         try {
             background = ImageIO.read(Objects.requireNonNull(getClass().getResource("BreakBreakout.jpg")));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void addAndManageButtons(Window window) {
         jButtons[0] = new JButton("Start Game");
-        jButtons[1] = new JButton("Instractions");
+        jButtons[1] = new JButton("Instructions");
         jButtons[2] = new JButton("Scores");
         jButtons[3] = new JButton("Exit Game");
         int place = 0;
@@ -33,6 +40,9 @@ public class BackgroundMenu extends JPanel {
             this.add(jButtons[i]);
             jButtons[i].setBounds(X_RIGHT_BOTTON + place, Y_RIGHT_BOTTON, WIDTH_RIGHT_BOTTON_SIZE, HIGHT_RIGHT_BOTTON);
             place += 1.5 * WIDTH_RIGHT_BOTTON_SIZE;
+            if (jButtons[i].getText().length() > 10) {
+                jButtons[i].setFont(new Font("Arial", Font.BOLD, 11));
+            }
         }
         jButtons[0].addActionListener(new ActionListener() {
             @Override
@@ -60,33 +70,19 @@ public class BackgroundMenu extends JPanel {
         });
     }
 
-
-//    public void startGameButtonPressed() {
-//        this.show = false;
-//        for (int i = 0; i < 4; i++) {
-//            this.jButtons[i].setVisible(false);
-//        }
-//        repaint();
-//        Game game=new Game();
-//        game.setBounds(0, 0, 800, 500);
-//        add(game);
-//
-//       // game.requestFocus();
-//        //Window.startGame(Game game);
-//
-//    }
+    public void addByLine() {
+        JLabel by = new JLabel("@By Avihay Navon, David Ever-Haim, Omer Hayoon, Avihay Ben-Ami, AAC-CS 2023");
+        by.setBounds(3, 430, 800, 40);
+        by.setFont(new Font("Arial", Font.BOLD, 14));
+        by.setVisible(true);
+        by.setForeground(Color.white);
+        this.add(by);
+    }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         if (this.show) {
             graphics.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-            JLabel by =new JLabel("@By Avihay Navon, David Ever-Haim, Omer Hayoon, Avihay Ben-Ami, AAC-CS 2023");
-            by.setBounds(3,425,800,40);
-            by.setFont(new Font("Arial",Font.BOLD,18));
-            by.setVisible(true);
-            by.setForeground(Color.white);
-            this.add(by);
-
         }
     }
 }
