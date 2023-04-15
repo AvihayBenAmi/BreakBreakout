@@ -3,17 +3,14 @@ import java.awt.*;
 public class Bricks {
     private int x;
     private int y;
-    private int width;
-    private int height;
-    private float a;
+    private final int width=70;
+    private final int height=30;
     private Color color;
     private int points;
 
     public Bricks(int x, int y, Color color) {
         this.x = x;
         this.y = y;
-        this.width = 70;
-        this.height = 30;
         this.color = color;
         if(this.color!=null){
         setPoints();}
@@ -46,9 +43,6 @@ public class Bricks {
         g.drawRect(this.x, this.y, this.width, this.height);
 
     }
-
-
-
 
     public int getPoints() {
         return points;

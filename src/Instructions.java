@@ -3,12 +3,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Instractions extends JPanel {
+public class Instructions extends JPanel {
 
     private boolean show;
     private JButton back;
 
-    public Instractions(Window window) {
+    public Instructions(Window window) {
         this.show = true;
         back = new JButton("Back to Menu");
         this.add(back);
