@@ -16,7 +16,7 @@ public class KeyboardInputs extends Thread implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
+            case (KeyEvent.VK_LEFT):
                 game.changeXDelta(-10);
                 System.out.println("Left");
                 break;

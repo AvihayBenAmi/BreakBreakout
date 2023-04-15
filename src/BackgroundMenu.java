@@ -24,9 +24,8 @@ public class BackgroundMenu extends JPanel {
         addBackgroundPicture();
         addAndManageButtons(window);
         addByLine();
-        //playSound();
-        this.interrupted=false;
-        thread.start();
+        //this.interrupted=false;
+        //thread.start();
     }
 
     public void addBackgroundPicture() {
@@ -54,23 +53,23 @@ public class BackgroundMenu extends JPanel {
         jButtons[0].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                window.startGame();
                 buttonSound();
-                interrupted=true;//
+                //interrupted=true;
+                window.startGame();
             }
         });
         jButtons[1].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                window.openInstructoins();
                 buttonSound();
+                window.openInstructoins();
             }
         });
         jButtons[2].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                window.openScoreBoard();
                 buttonSound();
+                window.openScoreBoard();
             }
         });
         jButtons[3].addActionListener(new ActionListener() {
@@ -91,20 +90,24 @@ public class BackgroundMenu extends JPanel {
         this.add(by);
     }
 
-        private Thread thread= new Thread(new Runnable() {
+    private Thread thread= new Thread(new Runnable() {
             @Override
             public void run() {
-                try{
-                    if (!interrupted){
-                    Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("8bit-music-for-game-68698.wav")));
-                    clip.open(inputStream);
-                    clip.start();}
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
+                    try {
+                        Clip clip = AudioSystem.getClip();
+                        AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("8bit-music-for-game-68698.wav")));
+                        clip.open(inputStream);
+                        clip.start();
+                        System.out.println("Clip Started");
+//                        if(interrupted){
+//                            clip.stop();
+//                            thread.interrupt();
+//                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    }
+
         });
 
     public void paintComponent(Graphics graphics) {
