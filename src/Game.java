@@ -19,8 +19,8 @@ public class Game extends JPanel {
     private final int yDelta = 435;
     private float xDeltaBall = 390;
     private float yDeltaBall = 415;
-    private float xDir = 1.0f;
-    private float yDir = 1.0f;
+    private float xDir = 0.5f;
+    private float yDir = 0.5f;
     private final int FIRST_BRICK_LEFT_X_CORNER = 60;
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
     private final int NUMBER_OF_BRICK_ROWS = 5;
@@ -167,7 +167,8 @@ public class Game extends JPanel {
     }
 
     private void checkIntersectsWithPlate() {
-        if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17).intersects(new Rectangle(xDelta, yDelta, 100, 25))) {
+        if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
+                .intersects(new Rectangle(xDelta, yDelta, 100, 25))) {
             intersectsSound();
             yDir *= -1;
         }
@@ -175,7 +176,8 @@ public class Game extends JPanel {
 
     private void checkIntersectsWithBricks() {
         for (int i = 0; i < arrayBricks.size(); i++) {
-            if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17).intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
+            if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
+                    .intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
                     arrayBricks.get(i).getHeight())) {
                 intersectsSound();
                 System.out.println("HIT THE BRICK" + "i= " + i);
@@ -190,14 +192,16 @@ public class Game extends JPanel {
         if (yDeltaBall > yDelta + 25) {
             try{
                 Clip clip = AudioSystem.getClip();
-                AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("game-over-arcade-6435 (1).wav")));
+                AudioInputStream inputStream=AudioSystem.getAudioInputStream
+                        (Objects.requireNonNull(Main.class.getResourceAsStream("game-over-arcade-6435 (1).wav")));
                 clip.open(inputStream);
                 clip.start();
             }
             catch (Exception e){
                 e.printStackTrace();
             }
-            JOptionPane.showConfirmDialog(this, playerName+", Game Over! \n Your Score is: "+pointsCounter, "Game Over",JOptionPane.CLOSED_OPTION);
+            JOptionPane.showConfirmDialog(this, playerName+", Game Over!" +
+                    " \n Your Score is: "+pointsCounter, "Game Over",JOptionPane.CLOSED_OPTION);
 
         }
 
