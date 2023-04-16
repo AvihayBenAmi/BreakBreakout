@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/KeyboardInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KeyboardInputs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +86,7 @@
       <workItem from="1681287889181" duration="7667000" />
       <workItem from="1681367304306" duration="41633000" />
       <workItem from="1681561518057" duration="21499000" />
+      <workItem from="1681658761487" duration="6734000" />
     </task>
     <task id="LOCAL‎-00001" summary="22:42 13/04">
       <created>1681414987940</created>
@@ -147,21 +151,5 @@
     <MESSAGE value="22:42 13/04" />
     <MESSAGE value="15.04 20:07" />
     <option name="LAST_COMMIT_MESSAGE" value="15.04 20:07" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Window.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Game.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

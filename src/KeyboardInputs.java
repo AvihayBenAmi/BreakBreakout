@@ -17,20 +17,17 @@ public class KeyboardInputs extends Thread implements KeyListener {
 
         switch (e.getKeyCode()) {
             case (KeyEvent.VK_LEFT):
+            case (KeyEvent.VK_A):
                 game.changeXDelta(-10);
                 System.out.println("Left");
                 break;
             case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
                 game.changeXDelta(10);
                 System.out.println("Right");
                 break;
             case KeyEvent.VK_P: //לסדר פאוז לפי לחיצה על P ושחרור בלחיצה על P
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
-                System.out.println("paused");
+                game.gameStop();
                 break;
         }
 

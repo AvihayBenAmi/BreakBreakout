@@ -23,22 +23,23 @@ public class Window extends JFrame {
     }
 
     public void openBackgroundMenu() {
+        if (game != null)
+            this.remove(game);
 
+        if (instractions != null)
+            this.remove(instractions);
+
+        if (scoreBoard != null)
+            this.remove(scoreBoard);
         this.background = new BackgroundMenu(this);
         this.add(background);
         background.setBounds(0, 0, WIDTH, HEIGHT);
         background.requestFocus();
-        if (instractions != null)
-            this.remove(instractions);
-        if (game != null)
-            this.remove(game);
-        if (scoreBoard != null)
-            this.remove(scoreBoard);
     }
 
     public void startGame() {
         this.remove(background);
-        this.game = new Game();
+        this.game = new Game(this);
         this.add(game);
         this.game.setBounds(0, 0, WIDTH, HEIGHT);
         game.requestFocus();

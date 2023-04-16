@@ -19,8 +19,8 @@ public class Game extends JPanel {
     private final int yDelta = 435;
     private float xDeltaBall = 390;
     private float yDeltaBall = 415;
-    private float xDir = 0.5f;
-    private float yDir = 0.5f;
+    private float xDir = 0.05f;
+    private float yDir = 0.05f;
     private final int FIRST_BRICK_LEFT_X_CORNER = 60;
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
     private final int NUMBER_OF_BRICK_ROWS = 5;
@@ -28,18 +28,23 @@ public class Game extends JPanel {
     private Bricks brick;
     private ArrayList<Bricks> arrayBricks;
     private Image background;
-    private Color[] colors;
+    private Color[] colors={Color.YELLOW,Color.orange,Color.RED,Color.GREEN,Color.BLUE};
     private int pointsCounter;
     private JButton back;
     private String playerName;
+    private boolean stop;
+    private Window window;
 
-    public Game() {
+
+    public Game(Window window) {
+        this.window=window;
+        this.stop=false;
         this.show = true;
         addBackgroundImage();
         addKeyListener(new KeyboardInputs(this));
         this.brick = new Bricks(0, 0, null);
         this.arrayBricks = new ArrayList<>();
-        this.colors = new Color[5];
+        //this.colors = new Color[5]; בוצע מערך של צבעים
         this.pointsCounter = 0;
         createBricks();
         createBackToMenu();
@@ -60,7 +65,7 @@ public class Game extends JPanel {
         int k = 0;
         for (int i = 0; i < NUMBER_OF_BRICK_ROWS; i++) {
             for (int t = 0; t < NUMBER_OF_BRICK_COL; t++) {
-                Bricks bricks = new Bricks(indexX, indexY, chooseColor(k));
+                Bricks bricks = new Bricks(indexX, indexY, colors[i]);
                 this.arrayBricks.add(bricks);
                 indexX += brick.getWidth();
             }
@@ -70,30 +75,30 @@ public class Game extends JPanel {
         }
     }
 
-    private Color chooseColor(int num) {
-        Color color = null;
-        colors[0] = Color.YELLOW;
-        colors[1] = Color.orange;
-        colors[2] = Color.RED;
-        colors[3] = Color.GREEN;
-        colors[4] = Color.BLUE;
-        if (num < colors.length) {
-            color = colors[num];
-        }
-        return color;
-    }
+//    private Color chooseColor(int num) {
+//        Color color = null;
+//        colors[0] = Color.YELLOW;
+//        colors[1] = Color.orange;
+//        colors[2] = Color.RED;
+//        colors[3] = Color.GREEN;
+//        colors[4] = Color.BLUE;
+//        if (num < colors.length) {
+//            color = colors[num];
+//        }
+//        return color;
+//    }
 
-    private void createBackToMenu() { //לבדוק איך ליצור חזרה תקינה לתפריט
+    private void createBackToMenu() {
         back = new JButton("Back to Menu");
         this.add(back);
         back.setBounds(3, 420, 100, 50);
         back.setFont(new Font("Arial", Font.BOLD, 10));
-//        back.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                window.openBackgroundMenu();
-//            }
-//        });
+       back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window.openBackgroundMenu();
+           }
+        });
     }
 
     private void insertPlayerName() {
@@ -115,8 +120,10 @@ public class Game extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Scanner scanner = new Scanner(System.in);
+
                 playerName = textField.getText();
-                frameOfText.setVisible(false);
+                    frameOfText.setVisible(false);
+
             }
         });
     }
@@ -149,8 +156,10 @@ public class Game extends JPanel {
         g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 12));
+
         g.drawString("Name: "+playerName+" points: " + pointsCounter, 3, 12);
-        if (this.playerName != "") {
+
+        if (this.playerName != "" &&!this.stop) {
             if (arrayBricks.size() > 0) {
                 checkIntersectsWithPlate();
                 looseGameMassage();
@@ -189,6 +198,7 @@ public class Game extends JPanel {
     }
 
     private void looseGameMassage() {
+
         if (yDeltaBall > yDelta + 25) {
             try{
                 Clip clip = AudioSystem.getClip();
@@ -201,12 +211,22 @@ public class Game extends JPanel {
                 e.printStackTrace();
             }
             JOptionPane.showConfirmDialog(this, playerName+", Game Over!" +
-                    " \n Your Score is: "+pointsCounter, "Game Over",JOptionPane.CLOSED_OPTION);
+                    " \n Your Score is: "+pointsCounter, "Game Over",JOptionPane.PLAIN_MESSAGE);
+            this.window.openBackgroundMenu();
+
 
         }
 
+    }
+    public void gameStop(){
+        this.stop=true;
+        JOptionPane.showConfirmDialog(this, "The game has stopped to continue click Ok and Click one of the play button "
+                , "Game stopped", JOptionPane.CLOSED_OPTION);
+        System.out.println("paused");
+            this.stop=false;
 
     }
+
 
     private void winGameMassage() {
         try{
