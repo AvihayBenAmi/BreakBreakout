@@ -15,13 +15,13 @@ import java.util.Scanner;
 public class Game extends JPanel {
 
     private boolean show;
-    private int xDelta = 350;
-    private final int yDelta = 435;
+    private int xDeltaPlayer = 350;
+    private final int yDeltaPlayer = 420;
     private float xDeltaBall = 390;
-    private float yDeltaBall = 415;
+    private float yDeltaBall = 400;
     private float xDir = 0.3f;
     private float yDir = 0.3f;
-    private final int FIRST_BRICK_LEFT_X_CORNER = 60;
+    private final int FIRST_BRICK_LEFT_X_CORNER = 40;
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
     private final int NUMBER_OF_BRICK_ROWS = 5;
     private final int NUMBER_OF_BRICK_COL = 10;
@@ -129,8 +129,8 @@ public class Game extends JPanel {
     }
 
     public void changeXDelta(int value) {
-        if (this.xDelta + value > 0 && this.xDelta + value < 685) {// צריך לשנות לגודל קבוע
-            this.xDelta += value;
+        if (this.xDeltaPlayer + value > 0 && this.xDeltaPlayer + value < 685) {// צריך לשנות לגודל קבוע
+            this.xDeltaPlayer += value;
         }
         repaint();
     }
@@ -151,7 +151,7 @@ public class Game extends JPanel {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         g.setColor(Color.WHITE);
-        g.fillRect(xDelta, yDelta, 100, 25);//צובע את המלבן
+        g.fillRect(xDeltaPlayer, yDeltaPlayer, 100, 25);//צובע את שחקן
         g.setColor(Color.WHITE);
         g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
         g.setColor(Color.white);
@@ -178,8 +178,9 @@ public class Game extends JPanel {
 
     private void checkIntersectsWithPlate() {
         if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
-                .intersects(new Rectangle(xDelta, yDelta, 100, 25))) {
+                .intersects(new Rectangle(xDeltaPlayer, yDeltaPlayer, 100, 25))) {
             intersectsSound();
+
             yDir *= -1;
         }
     }

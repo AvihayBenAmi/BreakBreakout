@@ -39,6 +39,9 @@ public class Window extends JFrame {
 
     public void startGame() {
         this.remove(background);
+
+        if (game != null)
+            this.remove(this.game);
         this.game = new Game(this);
         this.add(game);
         this.game.setBounds(0, 0, WIDTH, HEIGHT);
