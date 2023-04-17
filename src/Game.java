@@ -6,10 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -205,7 +202,7 @@ public class Game extends JPanel {
         }
     }
 
-    private void loseGameMassage() {
+    private void loseGameMassage() throws FileNotFoundException {
         if (yDeltaBall > yDeltaPlayer  -5) {//25
             try {
                 Clip clip = AudioSystem.getClip();
@@ -218,7 +215,7 @@ public class Game extends JPanel {
             }
             showMessage(playerName + ", Game Over!" +
                     " \n Your Score is: " + pointsCounter + " Your time was " + time + " seconds, Game Over");
-            collectData();//delete later
+            Scoreboard.createFile(collectData());
             SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
 
         }
@@ -277,11 +274,12 @@ public class Game extends JPanel {
         }
     }
 
-    private void collectData() {
+    private String collectData() {
         String name = this.playerName;
         int points = this.pointsCounter;
         int timer = this.time;
         System.out.println("Name -> " + name + "      Points -> " + points + "      Time -> " + timer);
+        return "Name -> " + name + "      Points -> " + points + "      Time -> " + timer+".";
     }
 
 
@@ -318,20 +316,27 @@ public class Game extends JPanel {
     public void startGame() {
         this.stop = false;
     }
+    public void paintFunctions(Graphics g) throws FileNotFoundException {
+        checkIntersectsWithPlate();
+        timer.start();
+        loseGameMassage();
+        checkIntersectsWithBricks();
+        updateBall();
+        repaint();
+        for (Bricks bricks : this.arrayBricks) {
+            bricks.paint(g);
+        }
+    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintImages(g);
         if (this.playerName != "" && !this.stop) {
             if (arrayBricks.size() > 0) {
-                checkIntersectsWithPlate();
-                timer.start();
-                loseGameMassage();
-                checkIntersectsWithBricks();
-                updateBall();
-                repaint();
-                for (Bricks bricks : this.arrayBricks) {
-                    bricks.paint(g);
+                try {
+                    paintFunctions(g);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
                 }
             } else {
                 winGameMassage();
