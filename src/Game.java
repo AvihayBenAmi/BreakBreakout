@@ -19,8 +19,8 @@ public class Game extends JPanel {
     private final int yDelta = 435;
     private float xDeltaBall = 390;
     private float yDeltaBall = 415;
-    private float xDir = 10f;
-    private float yDir = 10f;
+    private float xDir = 0.3f;
+    private float yDir = 0.3f;
     private final int FIRST_BRICK_LEFT_X_CORNER = 60;
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
     private final int NUMBER_OF_BRICK_ROWS = 5;
