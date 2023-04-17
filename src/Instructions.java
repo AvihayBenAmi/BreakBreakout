@@ -1,7 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Objects;
 
 public class Instructions extends JPanel {
 
@@ -13,9 +16,9 @@ public class Instructions extends JPanel {
         this.show = true;
         back = new JButton("Back to Menu");
         this.add(back);
-        back.setBounds(0, 0, 100, 50);
+        back.setBounds(0, 400, 150, 50);
         back.setFont(new Font("Arial", Font.BOLD, 10));
-
+        addImage();
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -23,14 +26,20 @@ public class Instructions extends JPanel {
             }
         });
     }
-    public void addImage(){
+
+    public void addImage() {
+        try {
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/data/instructionInHebrew.jpg")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        this.setBackground(Color.CYAN);
-
+//        this.setBackground(Color.CYAN);
+        graphics.drawImage(image, 0, 0, getWidth()-10, getHeight()-35, this);
 
     }
 

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="15.04 20:07" />
+    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="15.04 20:07">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
+    </list>
     <list id="e687eeb7-c35e-4975-8986-9a118386d624" name="Changes by david" comment="" />
     <list id="4f55291f-eda2-4887-85cc-0129616e88fc" name="Changes by עומר" comment="" />
     <option name="SHOW_DIALOG" value="false" />
