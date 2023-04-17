@@ -215,7 +215,7 @@ public class Game extends JPanel {
             this.window.openBackgroundMenu();
 
 
-        }
+        }//
 
     }
     public void gameStop(){

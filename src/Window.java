@@ -35,7 +35,7 @@ public class Window extends JFrame {
         this.add(background);
         background.setBounds(0, 0, WIDTH, HEIGHT);
         background.requestFocus();
-    }
+    }//
 
     public void startGame() {
         this.remove(background);
