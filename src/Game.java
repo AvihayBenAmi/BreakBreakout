@@ -19,8 +19,8 @@ public class Game extends JPanel {
     private final int yDelta = 435;
     private float xDeltaBall = 390;
     private float yDeltaBall = 415;
-    private float xDir = 0.05f;
-    private float yDir = 0.05f;
+    private float xDir = 10f;
+    private float yDir = 10f;
     private final int FIRST_BRICK_LEFT_X_CORNER = 60;
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
     private final int NUMBER_OF_BRICK_ROWS = 5;
@@ -47,7 +47,7 @@ public class Game extends JPanel {
         //this.colors = new Color[5]; בוצע מערך של צבעים
         this.pointsCounter = 0;
         createBricks();
-        createBackToMenu();
+        //createBackToMenu();
         insertPlayerName();
     }
 
@@ -88,18 +88,18 @@ public class Game extends JPanel {
 //        return color;
 //    }
 
-    private void createBackToMenu() {
-        back = new JButton("Back to Menu");
-        this.add(back);
-        back.setBounds(3, 420, 100, 50);
-        back.setFont(new Font("Arial", Font.BOLD, 10));
-       back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                window.openBackgroundMenu();
-           }
-        });
-    }
+//    private void createBackToMenu() {
+//        back = new JButton("Back to Menu");
+//        this.add(back);
+//        back.setBounds(3, 420, 100, 50);
+//        back.setFont(new Font("Arial", Font.BOLD, 10));
+//       back.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                window.openBackgroundMenu();
+//           }
+//        });
+//    }
 
     private void insertPlayerName() {
         this.playerName = "";
@@ -171,6 +171,7 @@ public class Game extends JPanel {
                 }
             } else {
                 winGameMassage();
+
             }
         }
     }
@@ -210,9 +211,11 @@ public class Game extends JPanel {
             catch (Exception e){
                 e.printStackTrace();
             }
-            JOptionPane.showConfirmDialog(this, playerName+", Game Over!" +
-                    " \n Your Score is: "+pointsCounter, "Game Over",JOptionPane.PLAIN_MESSAGE);
-            this.window.openBackgroundMenu();
+
+           int input= JOptionPane.showConfirmDialog(this, playerName+", Game Over!" +
+                   " \n Your Score is: "+pointsCounter, "Game Over", JOptionPane.DEFAULT_OPTION);//בעיה שלא חוזר למסך
+
+                this.window.openBackgroundMenu();
 
 
         }//
@@ -220,10 +223,14 @@ public class Game extends JPanel {
     }
     public void gameStop(){
         this.stop=true;
-        JOptionPane.showConfirmDialog(this, "The game has stopped to continue click Ok and Click one of the play button "
-                , "Game stopped", JOptionPane.CLOSED_OPTION);
-        System.out.println("paused");
-            this.stop=false;
+        int input= JOptionPane.showConfirmDialog(this, "Do you want to exit the game? "
+                , "Game stopped", JOptionPane.YES_NO_OPTION);// JOptionPane.CLOSED_OPTION
+        if(input==0){
+            this.window.openBackgroundMenu();
+        }else {
+            System.out.println("paused");
+            this.stop = false;
+        }
 
     }
 
@@ -238,7 +245,10 @@ public class Game extends JPanel {
         catch (Exception e){
             e.printStackTrace();
         }
+
         JOptionPane.showConfirmDialog(this, playerName+", You Won! \n Your Score is: "+pointsCounter, "Winner!", JOptionPane.PLAIN_MESSAGE);
+        this.window.openBackgroundMenu();
+
 
     }
 
