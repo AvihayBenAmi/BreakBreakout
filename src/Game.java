@@ -138,7 +138,6 @@ public class Game extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Scanner scanner = new Scanner(System.in);
-
                 playerName = textField.getText();
                 frameOfText.setVisible(false);
 

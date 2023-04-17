@@ -1,3 +1,1 @@
-Name -> Dana      Points -> 10      Time -> 4
-Name -> Eden      Points -> 30      Time -> 9
-Name -> Yossi      Points -> 20      Time -> 6
+Name -> גשה      Points -> 20      Time -> 15

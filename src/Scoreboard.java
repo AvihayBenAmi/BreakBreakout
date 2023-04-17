@@ -16,6 +16,7 @@ public class Scoreboard extends JPanel {
     private static String[] dataOrder = {"Name ", "Points ", "Time"};
     private static String totalData = "";
     private boolean information;
+    private JTextArea textArea = new JTextArea();
 
     public Scoreboard(Window window) {
         this.setBackground(Color.blue);
@@ -43,15 +44,15 @@ public class Scoreboard extends JPanel {
 
     public static void createFile(String data) throws FileNotFoundException {
         File file = new File(fileName + ".txt");
-        totalData += data;
+        totalData += "\n"+data;
         String[] tempArray = totalData.split("\\.");
         PrintWriter printWriter = new PrintWriter(file);
         for (int i = 0; i < tempArray.length; i++) {
             printWriter.println(tempArray[i]);
-
         }
         printWriter.close();
     }
+
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -60,6 +61,8 @@ public class Scoreboard extends JPanel {
             graphics.setColor(Color.gray);
             graphics.fillOval(0, 0, 100, 100);
         }
+        graphics.drawString(totalData, 50, 50);
+
 
 
     }
