@@ -54,6 +54,10 @@ public class Scoreboard extends JPanel {
         }
         printWriter.close();
     }
+    void drawString(Graphics g, String text, int x, int y) {
+        for (String line : text.split("\n"))
+            g.drawString(line, x, y += g.getFontMetrics().getHeight());
+    }
 
 
     public void paintComponent(Graphics g) {
@@ -65,8 +69,7 @@ public class Scoreboard extends JPanel {
         }
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 22));
-        g.drawString(totalData, 50, 82);
-
+        drawString(g,totalData,100,100);
 
 
     }

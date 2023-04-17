@@ -1,4 +1,5 @@
 Scores table 
 
-Name -> ds      Points -> 20      Time -> 6
-Name -> 123      Points -> 10      Time -> 3
+Name -> David      Points -> 10      Time -> 8
+Name -> Omer      Points -> 20      Time -> 6
+Name -> Avicii      Points -> 20      Time -> 5
