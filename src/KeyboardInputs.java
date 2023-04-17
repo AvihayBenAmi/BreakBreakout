@@ -28,7 +28,7 @@ public class KeyboardInputs extends Thread implements KeyListener {
                 break;
             case KeyEvent.VK_P: //לסדר פאוז לפי לחיצה על P ושחרור בלחיצה על P
                 game.gameStop();
-                break;///
+                break;///////
         }
 
     }
