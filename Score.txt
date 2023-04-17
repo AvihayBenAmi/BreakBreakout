@@ -1,1 +1,4 @@
-Name -> גשה      Points -> 20      Time -> 15
+Scores table 
+
+Name -> ds      Points -> 20      Time -> 6
+Name -> 123      Points -> 10      Time -> 3

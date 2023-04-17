@@ -14,7 +14,7 @@ public class Scoreboard extends JPanel {
     private Image background;
     private static String fileName = "Score";
     private static String[] dataOrder = {"Name ", "Points ", "Time"};
-    private static String totalData = "";
+    private static String totalData = "Scores table \n";
     private boolean information;
     private JTextArea textArea = new JTextArea();
 
@@ -34,6 +34,8 @@ public class Scoreboard extends JPanel {
             }
         });
     }
+
+
     private void addBackgroundImage() {
         try {
             this.background = ImageIO.read(Objects.requireNonNull(getClass().getResource("/data/ScoreBoardBG.jpg")));
@@ -44,24 +46,26 @@ public class Scoreboard extends JPanel {
 
     public static void createFile(String data) throws FileNotFoundException {
         File file = new File(fileName + ".txt");
-        totalData += "\n"+data;
+        totalData +="\n"+data;
         String[] tempArray = totalData.split("\\.");
         PrintWriter printWriter = new PrintWriter(file);
         for (int i = 0; i < tempArray.length; i++) {
-            printWriter.println(tempArray[i]);
+            printWriter.print(tempArray[i]);
         }
         printWriter.close();
     }
 
 
-    public void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
-        graphics.drawImage(background,0,0,getHeight()+300,getWidth(),this);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(background,0,0,getHeight()+300,getWidth(),this);
         if (information) {
-            graphics.setColor(Color.gray);
-            graphics.fillOval(0, 0, 100, 100);
+            g.setColor(Color.gray);
+            g.fillOval(0, 0, 100, 100);
         }
-        graphics.drawString(totalData, 50, 50);
+        g.setColor(Color.white);
+        g.setFont(new Font("Arial", Font.BOLD, 22));
+        g.drawString(totalData, 50, 82);
 
 
 
