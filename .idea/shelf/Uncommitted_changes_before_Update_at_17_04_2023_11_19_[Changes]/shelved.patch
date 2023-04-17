@@ -1,0 +1,92 @@
+Index: src/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java	
++++ b/src/Game.java	
+@@ -19,7 +19,7 @@
+     private final int yDelta = 435;
+     private float xDeltaBall = 390;
+     private float yDeltaBall = 415;
+-    private float xDir = 0.5f;
++    private float xDir = 0.6f;
+     private float yDir = 0.5f;
+     private final int FIRST_BRICK_LEFT_X_CORNER = 60;
+     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
+@@ -140,31 +140,7 @@
+         }
+     }
+ 
+-    public void paintComponent(Graphics g) {
+-        super.paintComponent(g);
+-        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+-        g.setColor(Color.WHITE);
+-        g.fillRect(xDelta, yDelta, 100, 25);//צובע את המלבן
+-        g.setColor(Color.WHITE);
+-        g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
+-        g.setColor(Color.white);
+-        g.setFont(new Font("Arial", Font.BOLD, 12));
+-        g.drawString("Name: "+playerName+" points: " + pointsCounter, 3, 12);
+-        if (this.playerName != "") {
+-            if (arrayBricks.size() > 0) {
+-                checkIntersectsWithPlate();
+-                looseGameMassage();
+-                checkIntersectsWithBricks();
+-                updateBall();
+-                repaint();
+-                for (Bricks bricks : this.arrayBricks) {
+-                    bricks.paint(g);
+-                }
+-            } else {
+-                winGameMassage();
+-            }
+-        }
+-    }
++
+ 
+     private void checkIntersectsWithPlate() {
+         if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
+@@ -228,7 +204,8 @@
+     private void intersectsSound(){
+         try{
+             Clip clip = AudioSystem.getClip();
+-            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
++            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull
++                    (Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
+             clip.open(inputStream);
+             clip.start();
+         }
+@@ -236,6 +213,31 @@
+             e.printStackTrace();
+         }
+     }
++    public void paintComponent(Graphics g) {
++        super.paintComponent(g);
++        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
++        g.setColor(Color.WHITE);
++        g.fillRect(xDelta, yDelta, 100, 25);//צובע את המלבן
++        g.setColor(Color.WHITE);
++        g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
++        g.setColor(Color.white);
++        g.setFont(new Font("Arial", Font.BOLD, 12));
++        g.drawString("Name: "+playerName+" points: " + pointsCounter, 3, 12);
++        if (this.playerName != "") {
++            if (arrayBricks.size() > 0) {
++                checkIntersectsWithPlate();
++                looseGameMassage();
++                checkIntersectsWithBricks();
++                updateBall();
++                repaint();
++                for (Bricks bricks : this.arrayBricks) {
++                    bricks.paint(g);
++                }
++            } else {
++                winGameMassage();
++            }
++        }
++    }
+ 
+ 
+ }

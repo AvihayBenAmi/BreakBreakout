@@ -1,0 +1,36 @@
+Index: src/BackgroundMenu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/BackgroundMenu.java b/src/BackgroundMenu.java
+--- a/src/BackgroundMenu.java	
++++ b/src/BackgroundMenu.java	
+@@ -25,7 +25,7 @@
+             ex.printStackTrace();
+         }
+         jButtons[0] = new JButton("Start Game");
+-        jButtons[1] = new JButton("Instractions");
++        jButtons[1] = new JButton("Instructions");
+         jButtons[2] = new JButton("Scores");
+         jButtons[3] = new JButton("Exit Game");
+         int place = 0;
+Index: src/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java	
++++ b/src/Game.java	
+@@ -13,8 +13,8 @@
+     private final int yDelta = 420;
+     private float xDeltaBall = 390;
+     private float yDeltaBall = 400;
+-    private float xDir = 1.0f;
+-    private float yDir = 1.0f;
++    private float xDir = 0.5f;
++    private float yDir = 0.5f;
+     private final int FIRST_BRICK_LEFT_X_CORNER = 60;
+     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
+     private final int NUMBER_OF_BRICK_ROWS = 5;

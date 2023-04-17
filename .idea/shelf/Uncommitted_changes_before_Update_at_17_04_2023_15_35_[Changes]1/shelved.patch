@@ -1,0 +1,281 @@
+Index: src/BackgroundMenu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/BackgroundMenu.java b/src/BackgroundMenu.java
+--- a/src/BackgroundMenu.java	
++++ b/src/BackgroundMenu.java	
+@@ -120,7 +120,8 @@
+     public static synchronized void buttonSound(){
+         try{
+             Clip clip = AudioSystem.getClip();
+-            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("button-124476.wav")));
++            AudioInputStream inputStream=AudioSystem.getAudioInputStream
++                    (Objects.requireNonNull(Main.class.getResourceAsStream("button-124476.wav")));
+             clip.open(inputStream);
+             clip.start();
+         }
+Index: src/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java	
++++ b/src/Game.java	
+@@ -19,8 +19,8 @@
+     private final int yDelta = 435;
+     private float xDeltaBall = 390;
+     private float yDeltaBall = 415;
+-    private float xDir = 0.05f;
+-    private float yDir = 0.05f;
++    private float xDir = 0.8f;
++    private float yDir = 0.8f;
+     private final int FIRST_BRICK_LEFT_X_CORNER = 60;
+     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
+     private final int NUMBER_OF_BRICK_ROWS = 5;
+@@ -28,7 +28,7 @@
+     private Bricks brick;
+     private ArrayList<Bricks> arrayBricks;
+     private Image background;
+-    private Color[] colors={Color.YELLOW,Color.orange,Color.RED,Color.GREEN,Color.BLUE};
++    private Color[] colors = {Color.YELLOW, Color.orange, Color.RED, Color.GREEN, Color.BLUE};
+     private int pointsCounter;
+     private JButton back;
+     private String playerName;
+@@ -37,8 +37,8 @@
+ 
+ 
+     public Game(Window window) {
+-        this.window=window;
+-        this.stop=false;
++        this.window = window;
++        this.stop = false;
+         this.show = true;
+         addBackgroundImage();
+         addKeyListener(new KeyboardInputs(this));
+@@ -47,7 +47,7 @@
+         //this.colors = new Color[5]; בוצע מערך של צבעים
+         this.pointsCounter = 0;
+         createBricks();
+-        createBackToMenu();
++//        createBackToMenu();
+         insertPlayerName();
+     }
+ 
+@@ -75,29 +75,29 @@
+         }
+     }
+ 
+-//    private Color chooseColor(int num) {
+-//        Color color = null;
+-//        colors[0] = Color.YELLOW;
+-//        colors[1] = Color.orange;
+-//        colors[2] = Color.RED;
+-//        colors[3] = Color.GREEN;
+-//        colors[4] = Color.BLUE;
+-//        if (num < colors.length) {
+-//            color = colors[num];
+-//        }
+-//        return color;
+-//    }
++    private Color chooseColor(int num) {
++        Color color = null;
++        colors[0] = Color.YELLOW;
++        colors[1] = Color.orange;
++        colors[2] = Color.RED;
++        colors[3] = Color.GREEN;
++        colors[4] = Color.BLUE;
++        if (num < colors.length) {
++            color = colors[num];
++        }
++        return color;
++    }
+ 
+     private void createBackToMenu() {
+         back = new JButton("Back to Menu");
+         this.add(back);
+         back.setBounds(3, 420, 100, 50);
+         back.setFont(new Font("Arial", Font.BOLD, 10));
+-       back.addActionListener(new ActionListener() {
++        back.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 window.openBackgroundMenu();
+-           }
++            }
+         });
+     }
+ 
+@@ -122,7 +122,7 @@
+                 Scanner scanner = new Scanner(System.in);
+ 
+                 playerName = textField.getText();
+-                    frameOfText.setVisible(false);
++                frameOfText.setVisible(false);
+ 
+             }
+         });
+@@ -147,33 +147,6 @@
+         }
+     }
+ 
+-    public void paintComponent(Graphics g) {
+-        super.paintComponent(g);
+-        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+-        g.setColor(Color.WHITE);
+-        g.fillRect(xDelta, yDelta, 100, 25);//צובע את המלבן
+-        g.setColor(Color.WHITE);
+-        g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
+-        g.setColor(Color.white);
+-        g.setFont(new Font("Arial", Font.BOLD, 12));
+-
+-        g.drawString("Name: "+playerName+" points: " + pointsCounter, 3, 12);
+-
+-        if (this.playerName != "" &&!this.stop) {
+-            if (arrayBricks.size() > 0) {
+-                checkIntersectsWithPlate();
+-                looseGameMassage();
+-                checkIntersectsWithBricks();
+-                updateBall();
+-                repaint();
+-                for (Bricks bricks : this.arrayBricks) {
+-                    bricks.paint(g);
+-                }
+-            } else {
+-                winGameMassage();
+-            }
+-        }
+-    }
+ 
+     private void checkIntersectsWithPlate() {
+         if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
+@@ -187,7 +160,7 @@
+         for (int i = 0; i < arrayBricks.size(); i++) {
+             if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
+                     .intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
+-                    arrayBricks.get(i).getHeight())) {
++                            arrayBricks.get(i).getHeight())) {
+                 intersectsSound();
+                 System.out.println("HIT THE BRICK" + "i= " + i);
+                 calculatePoints(arrayBricks.get(i));
+@@ -200,63 +173,96 @@
+     private void looseGameMassage() {
+ 
+         if (yDeltaBall > yDelta + 25) {
+-            try{
++            try {
+                 Clip clip = AudioSystem.getClip();
+-                AudioInputStream inputStream=AudioSystem.getAudioInputStream
++                AudioInputStream inputStream = AudioSystem.getAudioInputStream
+                         (Objects.requireNonNull(Main.class.getResourceAsStream("game-over-arcade-6435 (1).wav")));
+                 clip.open(inputStream);
+                 clip.start();
+-            }
+-            catch (Exception e){
++            } catch (Exception e) {
+                 e.printStackTrace();
+             }
+-            JOptionPane.showConfirmDialog(this, playerName+", Game Over!" +
+-                    " \n Your Score is: "+pointsCounter, "Game Over",JOptionPane.PLAIN_MESSAGE);
++            JOptionPane.showConfirmDialog(this, playerName + ", Game Over!" +
++                    " \n Your Score is: " + pointsCounter, "Game Over", JOptionPane.YES_OPTION);
+             this.window.openBackgroundMenu();
+ 
+ 
+         }//
+ 
+     }
+-    public void gameStop(){
+-        this.stop=true;
+-        JOptionPane.showConfirmDialog(this, "The game has stopped to continue click Ok and Click one of the play button "
+-                , "Game stopped", JOptionPane.CLOSED_OPTION);
+-        System.out.println("paused");
+-            this.stop=false;
++
++    public void gameStop() {
++        this.stop = true;
++       int infut= JOptionPane.showConfirmDialog(this, "do you want to return to main screen ?"
++        , "Game stopped", JOptionPane.YES_NO_OPTION);
++       if (infut==0){
++           this.window.openBackgroundMenu();
++       }else {
++           System.out.println("paused");
++           this.stop = false;
++       }
+ 
+     }
+ 
+ 
+     private void winGameMassage() {
+-        try{
++        try {
+             Clip clip = AudioSystem.getClip();
+-            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("winsquare-6993.wav")));
++            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream
++                    ("winsquare-6993.wav")));
+             clip.open(inputStream);
+             clip.start();
+-        }
+-        catch (Exception e){
++        } catch (Exception e) {
+             e.printStackTrace();
+         }
+-        JOptionPane.showConfirmDialog(this, playerName+", You Won! \n Your Score is: "+pointsCounter, "Winner!", JOptionPane.PLAIN_MESSAGE);
++        JOptionPane.showConfirmDialog(this, playerName +
++                ", You Won! \n Your Score is: " + pointsCounter, "Winner!", JOptionPane.PLAIN_MESSAGE);
+ 
+     }
+ 
+     public void calculatePoints(Bricks brick) {
+         pointsCounter += brick.getPoints();
+     }
+-    private void intersectsSound(){
+-        try{
++
++    private void intersectsSound() {
++        try {
+             Clip clip = AudioSystem.getClip();
+-            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
++            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
+             clip.open(inputStream);
+             clip.start();
+-        }
+-        catch (Exception e){
++        } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
+ 
++    public void paintComponent(Graphics g) {
++        super.paintComponent(g);
++        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
++        g.setColor(Color.WHITE);
++        g.fillRect(xDelta, yDelta, 100, 25);//צובע את המלבן
++        g.setColor(Color.WHITE);
++        g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
++        g.setColor(Color.white);
++        g.setFont(new Font("Arial", Font.BOLD, 12));
++
++        g.drawString("Name: " + playerName + " points: " + pointsCounter, 3, 12);
++
++        if (this.playerName != "" && !this.stop) {
++            if (arrayBricks.size() > 0) {
++                checkIntersectsWithPlate();
++                looseGameMassage();
++                checkIntersectsWithBricks();
++                updateBall();
++                repaint();
++                for (Bricks bricks : this.arrayBricks) {
++                    bricks.paint(g);
++                }
++            } else {
++                winGameMassage();
++            }
++        }
++    }
++
+ 
+ }
+ 
