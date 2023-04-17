@@ -28,17 +28,19 @@ public class Game extends JPanel {
     private Bricks brick;
     private ArrayList<Bricks> arrayBricks;
     private Image background;
-    private Color[] colors={Color.YELLOW,Color.orange,Color.RED,Color.GREEN,Color.BLUE};
+    private Color[] colors = {Color.YELLOW, Color.orange, Color.RED, Color.GREEN, Color.BLUE};
     private int pointsCounter;
     private JButton back;
     private String playerName;
     private boolean stop;
     private Window window;
+    private int time = 0;
+    private Timer timer;
 
 
     public Game(Window window) {
-        this.window=window;
-        this.stop=false;
+        this.window = window;
+        this.stop = false;
         this.show = true;
         addBackgroundImage();
         addKeyListener(new KeyboardInputs(this));
@@ -46,9 +48,24 @@ public class Game extends JPanel {
         this.arrayBricks = new ArrayList<>();
         //this.colors = new Color[5]; בוצע מערך של צבעים
         this.pointsCounter = 0;
+        addTimer();
         createBricks();
         //createBackToMenu();
         insertPlayerName();
+    }
+
+    private void addTimer() {
+        timer = new Timer(1000, e -> {
+            time++;
+        });
+    }
+
+    public void startTimer() {
+        timer.start();
+    }
+
+    public void stopTimer() {
+        timer.stop();
     }
 
     private void addBackgroundImage() {
@@ -101,7 +118,7 @@ public class Game extends JPanel {
 //        });
 //    }
 
-    private void insertPlayerName() {
+    private String insertPlayerName() {
         this.playerName = "";
         JTextField textField = new JTextField(20);
         JFrame frameOfText = new JFrame("Insert Name");
@@ -113,7 +130,8 @@ public class Game extends JPanel {
         //panel.add(label);
         frameOfText.add(panel);
         frameOfText.setSize(250, 100);
-        frameOfText.setLocation(585, 400);
+        //frameOfText.setLocation(585, 400);
+        frameOfText.setLocationRelativeTo(null);
         frameOfText.setVisible(true);
         frameOfText.setAlwaysOnTop(true);
         okButton.addActionListener(new ActionListener() {
@@ -122,10 +140,11 @@ public class Game extends JPanel {
                 Scanner scanner = new Scanner(System.in);
 
                 playerName = textField.getText();
-                    frameOfText.setVisible(false);
+                frameOfText.setVisible(false);
 
             }
         });
+        return playerName;
     }
 
     public void changeXDelta(int value) {
@@ -147,8 +166,7 @@ public class Game extends JPanel {
         }
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    private void paintImages(Graphics g) {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         g.setColor(Color.WHITE);
         g.fillRect(xDeltaPlayer, yDeltaPlayer, 100, 25);//צובע את שחקן
@@ -156,25 +174,10 @@ public class Game extends JPanel {
         g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.drawString("Name: --> " + playerName + " Points: --> " + pointsCounter + " Timer: --> " + time, 3, 12);
 
-        g.drawString("Name: "+playerName+" points: " + pointsCounter, 3, 12);
-
-        if (this.playerName != "" &&!this.stop) {
-            if (arrayBricks.size() > 0) {
-                checkIntersectsWithPlate();
-                looseGameMassage();
-                checkIntersectsWithBricks();
-                updateBall();
-                repaint();
-                for (Bricks bricks : this.arrayBricks) {
-                    bricks.paint(g);
-                }
-            } else {
-                winGameMassage();
-
-            }
-        }
     }
+
 
     private void checkIntersectsWithPlate() {
         if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
@@ -189,7 +192,7 @@ public class Game extends JPanel {
         for (int i = 0; i < arrayBricks.size(); i++) {
             if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
                     .intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
-                    arrayBricks.get(i).getHeight())) {
+                            arrayBricks.get(i).getHeight())) {
                 intersectsSound();
                 System.out.println("HIT THE BRICK" + "i= " + i);
                 calculatePoints(arrayBricks.get(i));
@@ -199,56 +202,59 @@ public class Game extends JPanel {
         }
     }
 
-    private void looseGameMassage() {
-
-        if (yDeltaBall > yDelta + 25) {
-            try{
+    private void loseGameMassage() {
+        if (yDeltaBall > yDeltaPlayer + 25) {
+            try {
                 Clip clip = AudioSystem.getClip();
-                AudioInputStream inputStream=AudioSystem.getAudioInputStream
+                AudioInputStream inputStream = AudioSystem.getAudioInputStream
                         (Objects.requireNonNull(Main.class.getResourceAsStream("game-over-arcade-6435 (1).wav")));
                 clip.open(inputStream);
                 clip.start();
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+            showMessage(playerName + ", Game Over!" +
+                    " \n Your Score is: " + pointsCounter + " Your time was " + time + " seconds, Game Over");
+            collectData();//delete later
+            SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
 
-           int input= JOptionPane.showConfirmDialog(this, playerName+", Game Over!" +
-                   " \n Your Score is: "+pointsCounter, "Game Over", JOptionPane.DEFAULT_OPTION);//בעיה שלא חוזר למסך
-
-                this.window.openBackgroundMenu();
-
-
-        }//
-
+        }
     }
-    public void gameStop(){
-        this.stop=true;
-        int input= JOptionPane.showConfirmDialog(this, "Do you want to exit the game? "
+
+    public static void showMessage(String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
+
+    public void gameStop() {
+        this.stop = true;
+        timer.stop();
+        int input = JOptionPane.showConfirmDialog(this, "Do you want to exit the game? "
                 , "Game stopped", JOptionPane.YES_NO_OPTION);// JOptionPane.CLOSED_OPTION
-        if(input==0){
+        if (input == 0) {
             this.window.openBackgroundMenu();
-        }else {
+        } else {
             System.out.println("paused");
             this.stop = false;
         }
+        timer.start();
 
     }
 
 
     private void winGameMassage() {
-        try{
+        try {
             Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("winsquare-6993.wav")));
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("winsquare-6993.wav")));
             clip.open(inputStream);
             clip.start();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        JOptionPane.showConfirmDialog(this, playerName+", You Won! \n Your Score is: "+pointsCounter, "Winner!", JOptionPane.PLAIN_MESSAGE);
-        this.window.openBackgroundMenu();
+        JOptionPane.showConfirmDialog(this, playerName + ", You Won! \n Your Score is: " + pointsCounter + " Your time was " + time
+                , "Winner!", JOptionPane.PLAIN_MESSAGE);
+        SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
+
 
 
     }
@@ -256,19 +262,79 @@ public class Game extends JPanel {
     public void calculatePoints(Bricks brick) {
         pointsCounter += brick.getPoints();
     }
-    private void intersectsSound(){
-        try{
+
+    private void intersectsSound() {
+        try {
             Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
             clip.open(inputStream);
             clip.start();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private void collectData() {
+        String name = this.playerName;
+        int points = this.pointsCounter;
+        int timer = this.time;
+        System.out.println("Name -> " + name + "      Points -> " + points + "      Time -> " + timer);
+    }
 
+
+//    public static File createFile(String path) {
+//        File file = new File(path);
+//        try {
+//            boolean success = file.createNewFile();
+//            if (success) {
+//                System.out.println("file created !");
+//            } else {
+//                System.out.println("file is already exist.");
+//            }
+//        } catch (IOException e) {
+//            System.out.println("error");
+//        }
+//        return file;
+//    }
+
+    public static void writeToFile(File file, String information) {
+        try {
+            if (file != null && file.exists()) {
+                FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                fileWriter.write(information);
+                bufferedWriter.close();
+                fileWriter.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void startGame() {
+        this.stop = false;
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        paintImages(g);
+        if (this.playerName != "" && !this.stop) {
+            if (arrayBricks.size() > 0) {
+                checkIntersectsWithPlate();
+                timer.start();
+                loseGameMassage();
+                checkIntersectsWithBricks();
+                updateBall();
+                repaint();
+                for (Bricks bricks : this.arrayBricks) {
+                    bricks.paint(g);
+                }
+            } else {
+                winGameMassage();
+            }
+        }
+    }
 }
 
 
