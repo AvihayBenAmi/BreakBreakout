@@ -73,7 +73,7 @@ public class Game extends JPanel {
 
     private void addBackgroundImage() {
         try {
-            this.background = ImageIO.read(Objects.requireNonNull(getClass().getResource("neon.png")));
+            this.background = ImageIO.read(Objects.requireNonNull(getClass().getResource("/data/neon.png")));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -210,7 +210,7 @@ public class Game extends JPanel {
             try {
                 Clip clip = AudioSystem.getClip();
                 AudioInputStream inputStream = AudioSystem.getAudioInputStream
-                        (Objects.requireNonNull(Main.class.getResourceAsStream("game-over-arcade-6435 (1).wav")));
+                        (Objects.requireNonNull(Main.class.getResourceAsStream("/data/game-over-arcade-6435 (1).wav")));
                 clip.open(inputStream);
                 clip.start();
             } catch (Exception e) {
@@ -247,7 +247,7 @@ public class Game extends JPanel {
     private void winGameMassage() {
         try {
             Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("winsquare-6993.wav")));
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/winsquare-6993.wav")));
             clip.open(inputStream);
             clip.start();
         } catch (Exception e) {
@@ -269,7 +269,7 @@ public class Game extends JPanel {
     private void intersectsSound() {
         try {
             Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/coin-collect-retro-8-bit-sound-effect-145251.wav")));
             clip.open(inputStream);
             clip.start();
         } catch (Exception e) {
