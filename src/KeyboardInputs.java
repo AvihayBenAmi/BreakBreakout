@@ -4,9 +4,13 @@ import java.awt.event.KeyListener;
 public class KeyboardInputs extends Thread implements KeyListener {
     private Game game;
 
+    public KeyboardInputs(){
+
+    }
     public KeyboardInputs(Game game) {
         this.game = game;
     }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
