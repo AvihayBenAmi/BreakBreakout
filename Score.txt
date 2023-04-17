@@ -1,5 +1,4 @@
 Scores table 
 
-Name -> David      Points -> 10      Time -> 8
-Name -> Omer      Points -> 20      Time -> 6
-Name -> Avicii      Points -> 20      Time -> 5
+Name -> David      Points -> 20      Time -> 7 Finished     -> didn't finish
+Name -> Omer      Points -> 10      Time -> 3 Finished     -> didn't finish

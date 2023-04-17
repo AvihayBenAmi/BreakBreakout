@@ -69,7 +69,7 @@ public class Scoreboard extends JPanel {
         }
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 22));
-        drawString(g,totalData,100,100);
+        drawString(g,totalData,30,100);
 
 
     }

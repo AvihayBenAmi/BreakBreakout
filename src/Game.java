@@ -36,6 +36,7 @@ public class Game extends JPanel {
     private Window window;
     private int time = 0;
     private Timer timer;
+    private boolean finished;
 
 
     public Game(Window window) {
@@ -212,8 +213,10 @@ public class Game extends JPanel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            finished = false;
             showMessage(playerName + ", Game Over!" +
-                    " \n Your Score is: " + pointsCounter + " Your time was " + time + " seconds, Game Over");
+                    " \n Your Score is: " + pointsCounter + " Your time was " + time +
+                    " seconds, you "+(finished ? "":"didn't ")+"finish");
             Scoreboard.createFile(collectData());
             SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
 
@@ -240,7 +243,7 @@ public class Game extends JPanel {
     }
 
 
-    private void winGameMassage() {
+    private void winGameMassage() throws FileNotFoundException {
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/winsquare-6993.wav")));
@@ -249,9 +252,10 @@ public class Game extends JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        finished = true;
         JOptionPane.showConfirmDialog(this, playerName + ", You Won! \n Your Score is: " + pointsCounter + " Your time was " + time
                 , "Winner!", JOptionPane.PLAIN_MESSAGE);
+        Scoreboard.createFile(collectData());
         SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
 
 
@@ -277,26 +281,10 @@ public class Game extends JPanel {
         String name = this.playerName;
         int points = this.pointsCounter;
         int timer = this.time;
-        System.out.println("Name -> " + name + "      Points -> " + points + "      Time -> " + timer);
-        return "Name -> " + name + "      Points -> " + points + "      Time -> " + timer+".";
+        System.out.println("Name -> " + name + "      Points -> " + points + "      Time -> " + timer + (finished ? "":"didn't")+"finish");
+        return "Name -> " + name + "      Points -> " + points + "      Time -> " +
+                timer+" Finished     -> "+(finished ? "":"didn't ")+"finish.";
     }
-
-
-//    public static File createFile(String path) {
-//        File file = new File(path);
-//        try {
-//            boolean success = file.createNewFile();
-//            if (success) {
-//                System.out.println("file created !");
-//            } else {
-//                System.out.println("file is already exist.");
-//            }
-//        } catch (IOException e) {
-//            System.out.println("error");
-//        }
-//        return file;
-//    }
-
 
     public void startGame() {
         this.stop = false;
@@ -324,7 +312,11 @@ public class Game extends JPanel {
                     throw new RuntimeException(e);
                 }
             } else {
-                winGameMassage();
+                try {
+                    winGameMassage();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
