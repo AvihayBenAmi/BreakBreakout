@@ -7,6 +7,7 @@ public class Instructions extends JPanel {
 
     private boolean show;
     private JButton back;
+    private Image image;
 
     public Instructions(Window window) {
         this.show = true;
@@ -22,10 +23,15 @@ public class Instructions extends JPanel {
             }
         });
     }
+    public void addImage(){
+
+    }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         this.setBackground(Color.CYAN);
+
+
     }
 
 }

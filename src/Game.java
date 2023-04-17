@@ -4,7 +4,12 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -17,8 +22,8 @@ public class Game extends JPanel {
     private final int yDeltaPlayer = 420;
     private float xDeltaBall = 390;
     private float yDeltaBall = 400;
-    private float xDir = 0.05f;
-    private float yDir = 0.05f;
+    private float xDir = 0.3f;
+    private float yDir = 0.3f;
     private final int FIRST_BRICK_LEFT_X_CORNER = 40;
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
     private final int NUMBER_OF_BRICK_ROWS = 5;
@@ -38,7 +43,7 @@ public class Game extends JPanel {
 
     public Game(Window window) {
         this.window = window;
-        this.stop = true;
+        this.stop = false;
         this.show = true;
         addBackgroundImage();
         addKeyListener(new KeyboardInputs(this));
@@ -68,7 +73,7 @@ public class Game extends JPanel {
 
     private void addBackgroundImage() {
         try {
-            this.background = ImageIO.read(Objects.requireNonNull(getClass().getResource("/data/neon.png")));
+            this.background = ImageIO.read(Objects.requireNonNull(getClass().getResource("neon.png")));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -102,7 +107,7 @@ public class Game extends JPanel {
 //        }
 //        return color;
 //    }
-//
+
 //    private void createBackToMenu() {
 //        back = new JButton("Back to Menu");
 //        this.add(back);
@@ -116,25 +121,33 @@ public class Game extends JPanel {
 //        });
 //    }
 
-    private void insertPlayerName() {
+    private String insertPlayerName() {
         this.playerName = "";
         JTextField textField = new JTextField(20);
         JFrame frameOfText = new JFrame("Insert Name");
+        //JLabel label=new JLabel("Insert Name");
         JButton okButton = new JButton("Submit");
         JPanel panel = new JPanel();
         panel.add(textField);
         panel.add(okButton);
+        //panel.add(label);
         frameOfText.add(panel);
         frameOfText.setSize(250, 100);
+        //frameOfText.setLocation(585, 400);
         frameOfText.setLocationRelativeTo(null);
         frameOfText.setVisible(true);
         frameOfText.setAlwaysOnTop(true);
-        okButton.addActionListener(e -> {
-            Scanner scanner = new Scanner(System.in);
-            playerName = textField.getText();
-            frameOfText.setVisible(false);
-            startGame();
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Scanner scanner = new Scanner(System.in);
+
+                playerName = textField.getText();
+                frameOfText.setVisible(false);
+
+            }
         });
+        return playerName;
     }
 
     public void changeXDelta(int value) {
@@ -164,9 +177,10 @@ public class Game extends JPanel {
         g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Name: --> " + playerName + " Points: --> " + pointsCounter + " Timer: --> " + time, 3, 12);
+        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time, 3, 12);
 
     }
+
 
     private void checkIntersectsWithPlate() {
         if (new Rectangle((int) xDeltaBall, (int) yDeltaBall, 13, 17)
@@ -190,12 +204,13 @@ public class Game extends JPanel {
             }
         }
     }
-    private void loseGameMassage() throws FileNotFoundException {
-        if (yDeltaBall > yDeltaPlayer + 25) {
+
+    private void loseGameMassage() {
+        if (yDeltaBall > yDeltaPlayer  -5) {//25
             try {
                 Clip clip = AudioSystem.getClip();
                 AudioInputStream inputStream = AudioSystem.getAudioInputStream
-                        (Objects.requireNonNull(Main.class.getResourceAsStream("/data/game-over-arcade-6435 (1).wav")));
+                        (Objects.requireNonNull(Main.class.getResourceAsStream("game-over-arcade-6435 (1).wav")));
                 clip.open(inputStream);
                 clip.start();
             } catch (Exception e) {
@@ -203,11 +218,6 @@ public class Game extends JPanel {
             }
             showMessage(playerName + ", Game Over!" +
                     " \n Your Score is: " + pointsCounter + " Your time was " + time + " seconds, Game Over");
-            try{
-                Scoreboard.createFile(collectData());
-            }catch (Exception e){
-
-            }
             collectData();//delete later
             SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
 
@@ -227,7 +237,7 @@ public class Game extends JPanel {
             this.window.openBackgroundMenu();
         } else {
             System.out.println("paused");
-            startGame();
+            this.stop = false;
         }
         timer.start();
 
@@ -237,14 +247,19 @@ public class Game extends JPanel {
     private void winGameMassage() {
         try {
             Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/winsquare-6993.wav")));
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("winsquare-6993.wav")));
             clip.open(inputStream);
             clip.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        showMessage(playerName+" You won! Your score is, "+pointsCounter+"Your time was "+time);
+
+        JOptionPane.showConfirmDialog(this, playerName + ", You Won! \n Your Score is: " + pointsCounter + " Your time was " + time
+                , "Winner!", JOptionPane.PLAIN_MESSAGE);
         SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
+
+
+
     }
 
     public void calculatePoints(Bricks brick) {
@@ -254,7 +269,7 @@ public class Game extends JPanel {
     private void intersectsSound() {
         try {
             Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/coin-collect-retro-8-bit-sound-effect-145251.wav")));
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("coin-collect-retro-8-bit-sound-effect-145251.wav")));
             clip.open(inputStream);
             clip.start();
         } catch (Exception e) {
@@ -262,60 +277,28 @@ public class Game extends JPanel {
         }
     }
 
-    private String collectData() {
+    private void collectData() {
         String name = this.playerName;
         int points = this.pointsCounter;
         int timer = this.time;
         System.out.println("Name -> " + name + "      Points -> " + points + "      Time -> " + timer);
-        String data = name+","+ String.valueOf(points)+","+ String.valueOf(timer);
-        return data;
     }
 
 
-    public void startGame() {
-        this.stop = false;
-
-    }
-    private void paintFunctions(Graphics g) throws FileNotFoundException {
-        checkIntersectsWithPlate();
-        timer.start();
-        loseGameMassage();
-        checkIntersectsWithBricks();
-        updateBall();
-        repaint();
-        for (Bricks bricks : this.arrayBricks) {
-            bricks.paint(g);
-        }
-    }
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        paintImages(g);
-        if (this.playerName != "" && !this.stop) {
-            if (arrayBricks.size() > 0) {
-                try {
-                    paintFunctions(g);
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                winGameMassage();
-            }
-        }
-    }
-    public static File createFile(String path) {
-        File file = new File(path);
-        try {
-            boolean success = file.createNewFile();
-            if (success) {
-                System.out.println("file created !");
-            } else {
-                System.out.println("file is already exist.");
-            }
-        } catch (IOException e) {
-            System.out.println("error");
-        }
-        return file;
-    }
+//    public static File createFile(String path) {
+//        File file = new File(path);
+//        try {
+//            boolean success = file.createNewFile();
+//            if (success) {
+//                System.out.println("file created !");
+//            } else {
+//                System.out.println("file is already exist.");
+//            }
+//        } catch (IOException e) {
+//            System.out.println("error");
+//        }
+//        return file;
+//    }
 
     public static void writeToFile(File file, String information) {
         try {
@@ -329,8 +312,32 @@ public class Game extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
+    public void startGame() {
+        this.stop = false;
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        paintImages(g);
+        if (this.playerName != "" && !this.stop) {
+            if (arrayBricks.size() > 0) {
+                checkIntersectsWithPlate();
+                timer.start();
+                loseGameMassage();
+                checkIntersectsWithBricks();
+                updateBall();
+                repaint();
+                for (Bricks bricks : this.arrayBricks) {
+                    bricks.paint(g);
+                }
+            } else {
+                winGameMassage();
+            }
+        }
+    }
 }
 
 

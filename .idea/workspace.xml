@@ -6,18 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="15.04 20:07">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/8bit-music-for-game-68698.wav" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BackgroundMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BackgroundMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BreakBreakout.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KeyboardInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KeyboardInputs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scoreboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/button-124476.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coin-collect-retro-8-bit-sound-effect-145251.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-over-arcade-6435 (1).wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mixkit-arcade-retro-scoring-counter-273.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/winsquare-6993.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <list id="e687eeb7-c35e-4975-8986-9a118386d624" name="Changes by david" comment="" />
     <list id="4f55291f-eda2-4887-85cc-0129616e88fc" name="Changes by עומר" comment="" />
@@ -38,9 +30,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Game.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -246,25 +235,5 @@
     <MESSAGE value="22:42 13/04" />
     <MESSAGE value="15.04 20:07" />
     <option name="LAST_COMMIT_MESSAGE" value="15.04 20:07" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Game.java</url>
-          <line>135</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Scoreboard.java</url>
-          <line>31</line>
-          <properties class="Scoreboard" method="createFile">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
