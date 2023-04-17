@@ -297,20 +297,6 @@ public class Game extends JPanel {
 //        return file;
 //    }
 
-    public static void writeToFile(File file, String information) {
-        try {
-            if (file != null && file.exists()) {
-                FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                fileWriter.write(information);
-                bufferedWriter.close();
-                fileWriter.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void startGame() {
         this.stop = false;
