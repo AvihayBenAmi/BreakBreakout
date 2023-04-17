@@ -62,7 +62,7 @@ public class BackgroundMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonSound();
-                window.openInstructoins();
+                window.openInstructions();
             }
         });
         jButtons[2].addActionListener(new ActionListener() {
@@ -120,7 +120,8 @@ public class BackgroundMenu extends JPanel {
     public static synchronized void buttonSound(){
         try{
             Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream=AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("button-124476.wav")));
+            AudioInputStream inputStream=AudioSystem.getAudioInputStream
+                    (Objects.requireNonNull(Main.class.getResourceAsStream("button-124476.wav")));
             clip.open(inputStream);
             clip.start();
         }

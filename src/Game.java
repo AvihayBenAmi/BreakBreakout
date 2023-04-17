@@ -177,7 +177,7 @@ public class Game extends JPanel {
         g.fillOval((int) xDeltaBall, (int) yDeltaBall, 13, 17); //צובע את הכדור
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Name: --> " + playerName + " Points: --> " + pointsCounter + " Timer: --> " + time, 3, 12);
+        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time, 3, 12);
 
     }
 
@@ -206,7 +206,7 @@ public class Game extends JPanel {
     }
 
     private void loseGameMassage() {
-        if (yDeltaBall > yDeltaPlayer + 25) {
+        if (yDeltaBall > yDeltaPlayer  -5) {//25
             try {
                 Clip clip = AudioSystem.getClip();
                 AudioInputStream inputStream = AudioSystem.getAudioInputStream

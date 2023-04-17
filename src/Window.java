@@ -7,7 +7,7 @@ public class Window extends JFrame {
     private BackgroundMenu background;
     private Game game;
     private Scoreboard scoreBoard;
-    private Instructions instractions;
+    private Instructions instructions;
 
 
     public Window() { //בנאי לחלון
@@ -26,8 +26,8 @@ public class Window extends JFrame {
         if (game != null)
             this.remove(game);
 
-        if (instractions != null)
-            this.remove(instractions);
+        if (instructions != null)
+            this.remove(instructions);
 
         if (scoreBoard != null)
             this.remove(scoreBoard);
@@ -49,12 +49,12 @@ public class Window extends JFrame {
 
     }
 
-    public void openInstructoins() {
+    public void openInstructions() {
         this.remove(background);
-        this.instractions = new Instructions(this);
-        this.add(instractions);
-        this.instractions.setBounds(0, 0, WIDTH, HEIGHT);
-        instractions.requestFocus();
+        this.instructions = new Instructions(this);
+        this.add(instructions);
+        this.instructions.setBounds(0, 0, WIDTH, HEIGHT);
+        instructions.requestFocus();
 
     }
 
