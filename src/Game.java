@@ -19,16 +19,16 @@ public class Game extends JPanel {
     private final int yDeltaPlayer = 420;
     private float xDeltaBall = 390;
     private float yDeltaBall = 400;
-    private float xDir = 0.05f;
-    private float yDir = 0.05f;
+    private float xDir = 0.4f;
+    private float yDir = 0.4f;
     private final int FIRST_BRICK_LEFT_X_CORNER = 40;
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
-    private final int NUMBER_OF_BRICK_ROWS = 5;
-    private final int NUMBER_OF_BRICK_COL = 10;
+    private final int NUMBER_OF_BRICK_ROWS = 5;//5
+    private final int NUMBER_OF_BRICK_COL = 10;//10
     private Bricks brick;
     private ArrayList<Bricks> arrayBricks;
     private Image background;
-    private Color[] colors = {Color.YELLOW, Color.orange, Color.RED, Color.GREEN, Color.BLUE};
+    private Color[] colors = {Color.YELLOW, Color.GREEN, Color.RED, Color.MAGENTA, Color.BLUE};
     private int pointsCounter;
     private JButton back;
     private String playerName;
@@ -58,7 +58,9 @@ public class Game extends JPanel {
     private void addTimer() {
         timer = new Timer(1000, e -> {
             time++;
+
         });
+
     }
 
     public void startTimer() {
@@ -264,6 +266,8 @@ public class Game extends JPanel {
 
     public void calculatePoints(Bricks brick) {
         pointsCounter += brick.getPoints();
+
+
     }
 
     private void intersectsSound() {

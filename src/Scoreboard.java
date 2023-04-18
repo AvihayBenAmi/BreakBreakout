@@ -23,7 +23,7 @@ public class Scoreboard extends JPanel {
         this.information = false;
         JButton back = new JButton("Back to Menu");
         this.add(back);
-        back.setBounds(0, 0, 100, 50);
+        back.setBounds(0, 0, 150, 50);
         back.setFont(new Font("Arial", Font.BOLD, 10));
         addBackgroundImage();
 

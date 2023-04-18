@@ -4,7 +4,7 @@ public class Bricks {
     private int x;
     private int y;
     private final int width=70;
-    private final int height=30;
+    private final int height=30;//
     private Color color;
     private int points;
 

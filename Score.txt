@@ -1,4 +1,4 @@
 Scores table 
 
-Name -> David      Points -> 20      Time -> 7 Finished     -> didn't finish
-Name -> Omer      Points -> 10      Time -> 3 Finished     -> didn't finish
+Name -> eran      Points -> 10      Time -> 7 Finished     -> didn't finish
+Name -> eran      Points -> 900      Time -> 90 Finished     -> finish
