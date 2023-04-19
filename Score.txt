@@ -1,4 +1,3 @@
 Scores table 
 
-Name -> eran      Points -> 10      Time -> 7 Finished     -> didn't finish
-Name -> eran      Points -> 900      Time -> 90 Finished     -> finish
+Name -> Shai      Points -> 20      Time -> 26 Finished     -> didn't finish

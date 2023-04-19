@@ -19,16 +19,16 @@ public class Game extends JPanel {
     private final int yDeltaPlayer = 420;
     private float xDeltaBall = 390;
     private float yDeltaBall = 400;
-    private float xDir = 0.4f;
-    private float yDir = 0.4f;
+    private float xDir = 0.5f;
+    private float yDir = 0.5f;
     private final int FIRST_BRICK_LEFT_X_CORNER = 40;
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
-    private final int NUMBER_OF_BRICK_ROWS = 5;//5
-    private final int NUMBER_OF_BRICK_COL = 10;//10
+    private final int NUMBER_OF_BRICK_ROWS = 5;
+    private final int NUMBER_OF_BRICK_COL = 10;
     private Bricks brick;
     private ArrayList<Bricks> arrayBricks;
     private Image background;
-    private Color[] colors = {Color.YELLOW, Color.GREEN, Color.RED, Color.MAGENTA, Color.BLUE};
+    private Color[] colors = {Color.YELLOW, Color.orange, Color.RED, Color.GREEN, Color.BLUE};
     private int pointsCounter;
     private JButton back;
     private String playerName;
@@ -58,9 +58,7 @@ public class Game extends JPanel {
     private void addTimer() {
         timer = new Timer(1000, e -> {
             time++;
-
         });
-
     }
 
     public void startTimer() {
@@ -205,7 +203,7 @@ public class Game extends JPanel {
     }
 
     private void loseGameMassage() throws FileNotFoundException {
-        if (yDeltaBall > yDeltaPlayer  -5) {//25
+        if (yDeltaBall > yDeltaPlayer - 5) {//25
             try {
                 Clip clip = AudioSystem.getClip();
                 AudioInputStream inputStream = AudioSystem.getAudioInputStream
@@ -218,7 +216,7 @@ public class Game extends JPanel {
             finished = false;
             showMessage(playerName + ", Game Over!" +
                     " \n Your Score is: " + pointsCounter + " Your time was " + time +
-                    " seconds, you "+(finished ? "":"didn't ")+"finish");
+                    " seconds, you " + (finished ? "" : "didn't ") + "finish");
             Scoreboard.createFile(collectData());
             SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
 
@@ -261,13 +259,10 @@ public class Game extends JPanel {
         SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
 
 
-
     }
 
     public void calculatePoints(Bricks brick) {
         pointsCounter += brick.getPoints();
-
-
     }
 
     private void intersectsSound() {
@@ -285,21 +280,22 @@ public class Game extends JPanel {
         String name = this.playerName;
         int points = this.pointsCounter;
         int timer = this.time;
-        System.out.println("Name -> " + name + "      Points -> " + points + "      Time -> " + timer + (finished ? "":"didn't")+"finish");
+        System.out.println("Name -> " + name + "      Points -> " + points + "      Time -> " + timer + (finished ? "" : "didn't") + "finish");
         return "Name -> " + name + "      Points -> " + points + "      Time -> " +
-                timer+" Finished     -> "+(finished ? "":"didn't ")+"finish.";
+                timer + " Finished     -> " + (finished ? "" : "didn't ") + "finish.";
     }
 
     public void startGame() {
         this.stop = false;
     }
+
     public void paintFunctions(Graphics g) throws FileNotFoundException {
         checkIntersectsWithPlate();
         timer.start();
         loseGameMassage();
         checkIntersectsWithBricks();
         updateBall();
-        repaint();
+//        repaint();
         for (Bricks bricks : this.arrayBricks) {
             bricks.paint(g);
         }

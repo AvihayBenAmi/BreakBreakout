@@ -25,7 +25,7 @@ public class BackgroundMenu extends JPanel {
         addAndManageButtons(window);
         addByLine();
         //this.interrupted=false;
-        //thread.start();
+        thread.start();
     }
 
     public void addBackgroundPicture() {
@@ -82,7 +82,7 @@ public class BackgroundMenu extends JPanel {
     }
 
     public void addByLine() {
-        JLabel by = new JLabel("@By Avihay Navon, David Ever-Haim, Omer Hayoon, Avihay Ben-Ami, AAC-CS 2023");
+        JLabel by = new JLabel("@By Avihay Navon, David Even-Haim, Omer Hayoon, Avihay Ben-Ami, AAC-CS 2023");
         by.setBounds(3, 430, 800, 40);
         by.setFont(new Font("Arial", Font.BOLD, 14));
         by.setVisible(true);
@@ -99,10 +99,6 @@ public class BackgroundMenu extends JPanel {
                         clip.open(inputStream);
                         clip.start();
                         System.out.println("Clip Started");
-//                        if(interrupted){
-//                            clip.stop();
-//                            thread.interrupt();
-//                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -117,7 +113,7 @@ public class BackgroundMenu extends JPanel {
         }
     }
 
-    public static synchronized void buttonSound(){
+    public static void buttonSound(){
         try{
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream=AudioSystem.getAudioInputStream
