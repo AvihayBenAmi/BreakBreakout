@@ -97,7 +97,7 @@ public class BackgroundMenu extends JPanel {
                         Clip clip = AudioSystem.getClip();
                         AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/8bit-music-for-game-68698.wav")));
                         clip.open(inputStream);
-                        clip.start();
+                        //clip.start();
                         System.out.println("Clip Started");
                     } catch (Exception e) {
                         e.printStackTrace();
