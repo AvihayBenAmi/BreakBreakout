@@ -6,7 +6,7 @@ public class MusicThread implements Runnable {
     Thread t;
     public MusicThread(){
         t=new Thread(this);
-        System.out.println("New thread: "+t);
+        //System.out.println("New thread: "+t);
         t.start();
     }
     @Override

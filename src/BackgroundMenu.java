@@ -61,6 +61,7 @@ public class BackgroundMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonSound();
+                thread.t.interrupt();
                 window.openInstructions();
             }
         });
@@ -68,6 +69,7 @@ public class BackgroundMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonSound();
+                thread.t.interrupt();
                 window.openScoreBoard();
             }
         });
