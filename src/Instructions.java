@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class Instructions extends JPanel {
 
+
     private boolean show;
     private JButton back;
     private Image image;

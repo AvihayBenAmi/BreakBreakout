@@ -6,10 +6,7 @@ public class KeyboardInputs extends Thread implements KeyListener {
     private Tray tray;
     private Ball ball;
 
-    public KeyboardInputs(){
-
-    }
-    public KeyboardInputs(Game game) {
+    public KeyboardInputs(Game game, Tray tray ) {
         this.game = game;
         this.tray=tray;
     }
