@@ -17,15 +17,14 @@ public class BackgroundMenu extends JPanel {
     private boolean show;
     private JButton[] jButtons = new JButton[4];
     private Image background;
-    private boolean interrupted;
+    MusicThread thread;
 
     public BackgroundMenu(Window window) {
         this.show = true;
         addBackgroundPicture();
         addAndManageButtons(window);
         addByLine();
-        //this.interrupted=false;
-        thread.start();
+        thread=new MusicThread();
     }
 
     public void addBackgroundPicture() {
@@ -54,7 +53,7 @@ public class BackgroundMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonSound();
-                //interrupted=true;
+                thread.t.interrupt();
                 window.startGame();
             }
         });
@@ -89,23 +88,6 @@ public class BackgroundMenu extends JPanel {
         by.setForeground(Color.white);
         this.add(by);
     }
-
-    private Thread thread= new Thread(new Runnable() {
-            @Override
-            public void run() {
-                    try {
-                        Clip clip = AudioSystem.getClip();
-                        AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/8bit-music-for-game-68698.wav")));
-                        clip.open(inputStream);
-                        //clip.start();
-                        System.out.println("Clip Started");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    }
-
-        });
-
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         if (this.show) {

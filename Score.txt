@@ -1,3 +1,3 @@
 Scores table 
 
-Name -> dddd      Points -> 10      Time -> 3 Finished     -> didn't finish
+Name -> avihay      Points -> 10      Time -> 3 Finished     -> didn't finish

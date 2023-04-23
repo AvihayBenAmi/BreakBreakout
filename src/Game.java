@@ -47,7 +47,7 @@ public class Game extends JPanel {
         createBricks();
         this.stop = false;
         addKeyListener(new KeyboardInputs(this, this.tray));
-        this.playerName=insertPlayerName();
+        this.playerName = insertPlayerName();
 
     }
 
@@ -239,7 +239,6 @@ public class Game extends JPanel {
         ball.updateBall();
         repaint();
     }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintImages(g);
