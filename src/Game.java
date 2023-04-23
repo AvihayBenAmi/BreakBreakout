@@ -31,10 +31,11 @@ public class Game extends JPanel {
     private final Color[] colors = {Color.YELLOW, Color.orange, Color.RED, Color.GREEN, Color.BLUE};
     private Ball ball;
     private Tray tray;
+    private JFrame frameOfText;
 
 
     public Game(Window window) {
-        this.window =window;
+        this.window = window;
         this.ball = new Ball();
         this.tray = new Tray();
         this.show = true;
@@ -47,8 +48,7 @@ public class Game extends JPanel {
         createBricks();
         this.stop = false;
         addKeyListener(new KeyboardInputs(this, this.tray));
-        this.playerName = insertPlayerName();
-
+        //this.playerName = insertPlayerName();
     }
 
     private void addTimer() {
@@ -92,7 +92,7 @@ public class Game extends JPanel {
     private String insertPlayerName() {
         this.playerName = null;
         JTextField textField = new JTextField(20);
-        JFrame frameOfText = new JFrame("Insert Name");
+        this.frameOfText = new JFrame("Insert Name");
         JButton submitButton = new JButton("Submit");
         JPanel panel = new JPanel();
         panel.add(textField);
@@ -112,12 +112,6 @@ public class Game extends JPanel {
         return playerName;
     }
 
-    private void paintImages(Graphics g) {
-        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-        g.setColor(Color.white);
-        g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time, 3, 12);
-    }
 
     private void checkIntersectsWithPlate() {
         if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
@@ -226,23 +220,11 @@ public class Game extends JPanel {
         this.stop = false;
     }
 
-    public void paintFunctions(Graphics g) throws FileNotFoundException {
-        for (Bricks bricks : this.arrayBricks) {
-            bricks.paint(g);
-        }
-        checkIntersectsWithPlate();
-        timer.start();
-        loseGameMassage();
-        checkIntersectsWithBricks();
-        ball.paintBall(g);
-        tray.paintTray(g);
-        ball.updateBall();
-        repaint();
-    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintImages(g);
-        if (this.playerName != null && !this.stop) {
+        if (this.playerName == null && !this.stop) {
             if (arrayBricks.size() > 0) {
                 try {
                     paintFunctions(g);
@@ -257,5 +239,26 @@ public class Game extends JPanel {
                 }
             }
         }
+    }
+
+    private void paintImages(Graphics g) {
+        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        g.setColor(Color.white);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time, 3, 12);
+    }
+
+    public void paintFunctions(Graphics g) throws FileNotFoundException {
+        for (Bricks bricks : this.arrayBricks) {
+            bricks.paint(g);
+        }
+        checkIntersectsWithPlate();
+        timer.start();
+        loseGameMassage();
+        checkIntersectsWithBricks();
+        ball.paintBall(g);
+        tray.paintTray(g);
+        ball.updateBall();
+        repaint();
     }
 }
