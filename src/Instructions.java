@@ -39,7 +39,6 @@ public class Instructions extends JPanel {
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-//        this.setBackground(Color.CYAN);
         graphics.drawImage(image, 0, 0, getWidth()-10, getHeight()-35, this);
 
     }

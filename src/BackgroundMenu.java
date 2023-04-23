@@ -22,6 +22,7 @@ public class BackgroundMenu extends JPanel {
         addBackgroundPicture();
         addAndManageButtons(window);
         addByLine();
+        MusicThread.running = true;
         thread=new MusicThread();
     }
 
@@ -44,7 +45,7 @@ public class BackgroundMenu extends JPanel {
             jButtons[i].setBounds(X_RIGHT_BOTTON + place, Y_RIGHT_BOTTON, WIDTH_RIGHT_BOTTON_SIZE, HIGHT_RIGHT_BOTTON);
             place += 1.5 * WIDTH_RIGHT_BOTTON_SIZE;
             if (jButtons[i].getText().length() > 10) {
-                jButtons[i].setFont(new Font("Arial", Font.BOLD, 11));
+                jButtons[i].setFont(new Font("Arial", Font.BOLD, 10));
             }
         }
         jButtons[0].addActionListener(e -> {
@@ -54,12 +55,12 @@ public class BackgroundMenu extends JPanel {
         });
         jButtons[1].addActionListener(e -> {
             buttonSound();
-            thread.t.interrupt();
+            MusicThread.running = false;
             window.openInstructions();
         });
         jButtons[2].addActionListener(e -> {
             buttonSound();
-            thread.t.interrupt();
+            MusicThread.running = false;
             window.openScoreBoard();
         });
         jButtons[3].addActionListener(e -> {

@@ -3,11 +3,13 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MusicThread implements Runnable {
-    Thread t;
-    public MusicThread(){
-        t=new Thread(this);
-        //System.out.println("New thread: "+t);
-        t.start();
+    Thread openMusic;
+    public static volatile boolean running = true;
+
+    public MusicThread() {
+        openMusic = new Thread(this);
+        System.out.println("New thread: "+openMusic);
+            openMusic.start();
     }
     @Override
     public void run() {
@@ -32,13 +34,17 @@ public class MusicThread implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        while (!Thread.interrupted()){
-            System.out.println("Thread is running");
+        while (running) {
+            try {
+                Thread.sleep(1000);
+                System.out.println("Music is running");
+            } catch (Exception e) {
+
             }
+        }
         System.out.println("Thread is stopped");
         clip.stop();
         System.out.println("Clip stopped");
 
     }
-
-    }
+}

@@ -1,16 +1,27 @@
+import javax.swing.*;
 import java.awt.*;
 
-public class Ball extends Thread {
+public class Ball extends JPanel implements Runnable {
     private float xDeltaBall = 390;
     private float yDeltaBall = 400;
     private final int WIDTH_BALL = 13;
     private final int HEIGHT_BALL = 20;
-    private float xDir = 0.5f;
-    private float yDir = 0.5f;
+    private float xDir = 0.2f;
+    private float yDir = 0.2f;
+    private boolean running;
 
-    public void updateBall() {
-        new Thread(new Runnable() {
-            public void run() {
+    private Thread updateBall;
+
+    public Ball() {
+        updateBall = new Thread(this);
+        System.out.println("New thread: " + updateBall);
+    }
+
+    public void run() {
+        while (running) {
+            try {
+                System.out.println("Ball thread is running");
+                Thread.sleep(1);
                 xDeltaBall += xDir;
                 if (xDeltaBall >= 775 || xDeltaBall <= 0) {
                     xDir *= -1;
@@ -21,12 +32,23 @@ public class Ball extends Thread {
                     yDir *= -1;
                     System.out.println("update ball");
                 }
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }).start();
+        }
+    }
+
+    public void startUpdateBall() {
+        this.running = true;
+        updateBall.start();
+    }
+
+    public void stopUpdateBall() {
+        this.running = false;
     }
 
     public void updateBallWhenIntersects() {
+        yDeltaBall += yDir * 2;//מונע גלישה של הכדור על המשטח
         this.yDir *= -1;
         System.out.println("update ball intersects");
     }
@@ -49,6 +71,6 @@ public class Ball extends Thread {
 
     public void paintBall(Graphics g) {
         g.setColor(Color.WHITE);
-        g.fillOval((int) this.xDeltaBall, (int) this.yDeltaBall, this.WIDTH_BALL, this.HEIGHT_BALL); //צובע את הכדור
+        g.fillOval((int) this.xDeltaBall, (int) this.yDeltaBall, this.WIDTH_BALL, this.HEIGHT_BALL);
     }
 }

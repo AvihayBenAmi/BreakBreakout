@@ -2,8 +2,8 @@ import javax.swing.*;
 
 public class Window extends JFrame {
 
-    private static final int WIDTH = 800; //הגדרת קבוע לרוחב החלון
-    private static final int HEIGHT = 500; //הגדרת קבוע לגובה החלון
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 500;
     private BackgroundMenu background;
     private Game game;
     private Scoreboard scoreBoard;
@@ -43,7 +43,6 @@ public class Window extends JFrame {
         this.game.setBounds(0, 0, WIDTH, HEIGHT);
         game.requestFocus();
     }
-
     public void openInstructions() {
         this.remove(background);
         this.instructions = new Instructions(this);

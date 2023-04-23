@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Game extends JPanel {
-    //File file = createFile("");
     private Window window;
     private boolean show;
     private Image background;
@@ -32,11 +31,11 @@ public class Game extends JPanel {
     private Ball ball;
     private Tray tray;
     private JFrame frameOfText;
+    private boolean checkStartBall;
 
 
     public Game(Window window) {
         this.window = window;
-        this.ball = new Ball();
         this.tray = new Tray();
         this.show = true;
         addBackgroundImage();
@@ -48,7 +47,8 @@ public class Game extends JPanel {
         createBricks();
         this.stop = false;
         addKeyListener(new KeyboardInputs(this, this.tray));
-        //this.playerName = insertPlayerName();
+        this.playerName = insertPlayerName();
+        this.ball = new Ball();
     }
 
     private void addTimer() {
@@ -94,6 +94,7 @@ public class Game extends JPanel {
         JTextField textField = new JTextField(20);
         this.frameOfText = new JFrame("Insert Name");
         JButton submitButton = new JButton("Submit");
+        frameOfText.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         panel.add(textField);
         panel.add(submitButton);
@@ -105,13 +106,12 @@ public class Game extends JPanel {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frameOfText.setVisible(false);
+                frameOfText.removeNotify();
                 playerName = textField.getText();
             }
         });
         return playerName;
     }
-
 
     private void checkIntersectsWithPlate() {
         if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
@@ -147,6 +147,7 @@ public class Game extends JPanel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            stopBall();
             finished = false;
             showMessage(playerName + ", Game Over!" +
                     " \n Your Score is: " + pointsCounter + " Your time was " + time +
@@ -165,7 +166,7 @@ public class Game extends JPanel {
         this.stop = true;
         timer.stop();
         int input = JOptionPane.showConfirmDialog(this, "Do you want to exit the game? "
-                , "Game stopped", JOptionPane.YES_NO_OPTION);// JOptionPane.CLOSED_OPTION
+                , "Game stopped", JOptionPane.YES_NO_OPTION);
         if (input == 0) {
             this.window.openBackgroundMenu();
         } else {
@@ -221,26 +222,6 @@ public class Game extends JPanel {
     }
 
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        paintImages(g);
-        if (this.playerName == null && !this.stop) {
-            if (arrayBricks.size() > 0) {
-                try {
-                    paintFunctions(g);
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                try {
-                    winGameMassage();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-    }
-
     private void paintImages(Graphics g) {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         g.setColor(Color.white);
@@ -258,7 +239,5 @@ public class Game extends JPanel {
         checkIntersectsWithBricks();
         ball.paintBall(g);
         tray.paintTray(g);
-        ball.updateBall();
-        repaint();
     }
 }
