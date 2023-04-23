@@ -4,32 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="15.04 20:07">
-      <change afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_04_2023_09_47_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_04_2023_09_47__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_04_2023_09_47__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_04_2023_09_47__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_11_19__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_11_19__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_11_19__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_11_19__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_15_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_15_35__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_15_35__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_15_35__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_16__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_16__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_53__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_53__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Score.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BackgroundMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BackgroundMenu.java" afterDir="false" />
+    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="23.04.23 13:33">
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KeyboardInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KeyboardInputs.java" afterDir="false" />
     </list>
     <list id="e687eeb7-c35e-4975-8986-9a118386d624" name="Changes by david" comment="" />
     <list id="0f72439a-c49a-4220-a8ad-a44396819627" name="Changes by אביחי" comment="" />
-    <list id="4f55291f-eda2-4887-85cc-0129616e88fc" name="Changes by עומר" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KeyboardInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KeyboardInputs.java" afterDir="false" />
-    </list>
+    <list id="4f55291f-eda2-4887-85cc-0129616e88fc" name="Changes by עומר" comment="Changes by עומר" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,49 +30,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Game.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Game.java">
-      <ranges>
-        <range start1="8" end1="9" start2="8" end2="10" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="11" end1="13" start2="12" end2="12" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="15" end1="16" start2="14" end2="16" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="17" end1="23" start2="17" end2="26" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="27" end1="39" start2="30" end2="33" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="43" end1="44" start2="37" end2="39" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="46" end1="47" start2="41" end2="44" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="49" end1="52" start2="46" end2="46" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="53" end1="54" start2="47" end2="49" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="122" end1="123" start2="117" end2="118" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="126" end1="127" start2="121" end2="122" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="129" end1="130" start2="124" end2="125" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="137" end1="138" start2="132" end2="133" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="140" end1="142" start2="135" end2="138" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="143" end1="144" start2="139" end2="141" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="149" end1="155" start2="146" end2="152" changelist="4f55291f-eda2-4887-85cc-0129616e88fc" />
-        <range start1="156" end1="167" start2="153" end2="164" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="170" end1="174" start2="167" end2="171" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="182" end1="184" start2="179" end2="183" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="185" end1="185" start2="184" end2="186" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="186" end1="187" start2="187" end2="187" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="192" end1="193" start2="192" end2="193" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="195" end1="195" start2="195" end2="198" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="199" end1="200" start2="202" end2="204" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="205" end1="206" start2="209" end2="210" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="292" end1="292" start2="296" end2="299" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="296" end1="301" start2="303" end2="307" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="306" end1="307" start2="312" end2="313" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/KeyboardInputs.java">
-      <ranges>
-        <range start1="5" end1="5" start2="5" end2="7" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="6" end1="10" start2="8" end2="12" changelist="4f55291f-eda2-4887-85cc-0129616e88fc" />
-        <range start1="11" end1="11" start2="13" end2="14" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="24" end1="25" start2="27" end2="28" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="29" end1="30" start2="32" end2="33" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -160,7 +97,7 @@
       <workItem from="1681719867843" duration="12343000" />
       <workItem from="1681912019004" duration="4499000" />
       <workItem from="1681925631712" duration="1233000" />
-      <workItem from="1682232568917" duration="12781000" />
+      <workItem from="1682232568917" duration="13493000" />
     </task>
     <task id="LOCAL‎-00001" summary="22:42 13/04">
       <created>1681414987940</created>
@@ -358,7 +295,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1681921326480</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL‎-00029" summary="15.04 20:07">
+      <created>1682245964231</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL‎-00029" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682245964231</updated>
+    </task>
+    <task id="LOCAL‎-00030" summary="Changes by עומר">
+      <created>1682246041400</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL‎-00030" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682246041400</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,6 +329,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="22:42 13/04" />
     <MESSAGE value="15.04 20:07" />
-    <option name="LAST_COMMIT_MESSAGE" value="15.04 20:07" />
+    <MESSAGE value="Changes by עומר" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by עומר" />
   </component>
 </project>

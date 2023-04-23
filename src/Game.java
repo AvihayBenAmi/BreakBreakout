@@ -47,7 +47,8 @@ public class Game extends JPanel {
         createBricks();
         this.stop = false;
         addKeyListener(new KeyboardInputs(this, this.tray));
-        insertPlayerName();
+        this.playerName=insertPlayerName();
+
     }
 
     private void addTimer() {
