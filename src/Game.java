@@ -34,7 +34,7 @@ public class Game extends JPanel {
 
 
     public Game(Window window) {
-        this.window = window;
+        this.window =window;
         this.ball = new Ball();
         this.tray = new Tray();
         this.show = true;
@@ -123,7 +123,7 @@ public class Game extends JPanel {
         if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
                 .intersects(new Rectangle(tray.getxDeltaPlayer(), tray.getyDeltaPlayer(), 100, 25))) {
             intersectsSound();
-            System.out.println("HIT THE Plate");
+            System.out.println("Hit the Tray");
             ball.updateBallWhenIntersects();
         }
     }

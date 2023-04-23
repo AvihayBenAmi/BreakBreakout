@@ -4,8 +4,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -49,36 +47,24 @@ public class BackgroundMenu extends JPanel {
                 jButtons[i].setFont(new Font("Arial", Font.BOLD, 11));
             }
         }
-        jButtons[0].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buttonSound();
-                thread.t.interrupt();
-                window.startGame();
-            }
+        jButtons[0].addActionListener(e -> {
+            buttonSound();
+            thread.t.interrupt();
+            window.startGame();
         });
-        jButtons[1].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buttonSound();
-                thread.t.interrupt();
-                window.openInstructions();
-            }
+        jButtons[1].addActionListener(e -> {
+            buttonSound();
+            thread.t.interrupt();
+            window.openInstructions();
         });
-        jButtons[2].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buttonSound();
-                thread.t.interrupt();
-                window.openScoreBoard();
-            }
+        jButtons[2].addActionListener(e -> {
+            buttonSound();
+            thread.t.interrupt();
+            window.openScoreBoard();
         });
-        jButtons[3].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buttonSound();
-                System.exit(0);
-            }
+        jButtons[3].addActionListener(e -> {
+            buttonSound();
+            System.exit(0);
         });
     }
 

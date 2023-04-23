@@ -33,9 +33,9 @@ public class MusicThread implements Runnable {
             e.printStackTrace();
         }
         while (!Thread.interrupted()){
-            //System.out.println("Thread is running");
+            System.out.println("Thread is running");
             }
-        //System.out.println("Thread is stopped");
+        System.out.println("Thread is stopped");
         clip.stop();
         System.out.println("Clip stopped");
 
