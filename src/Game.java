@@ -186,6 +186,7 @@ public class Game extends JPanel {//
         } catch (Exception e) {
             e.printStackTrace();
         }
+        stopBall();
         finished = true;
         JOptionPane.showConfirmDialog(this, playerName + ", You Won! \n Your Score is: " + pointsCounter + " Your time was " + time
                 , "Winner!", JOptionPane.PLAIN_MESSAGE);
