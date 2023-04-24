@@ -77,12 +77,7 @@ public class BackgroundMenu extends JPanel {//
         by.setForeground(Color.white);
         this.add(by);
     }
-    public void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
-        if (this.show) {
-            graphics.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
+
 
     public static void buttonSound(){
         try{
