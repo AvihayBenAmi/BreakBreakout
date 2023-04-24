@@ -7,7 +7,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
-public class BackgroundMenu extends JPanel {
+public class BackgroundMenu extends JPanel {//
     private final int X_RIGHT_BOTTON = 130;
     private final int Y_RIGHT_BOTTON = 330;
     private final int WIDTH_RIGHT_BOTTON_SIZE = 100;

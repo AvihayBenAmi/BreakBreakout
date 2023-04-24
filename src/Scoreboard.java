@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Objects;
 
-public class Scoreboard extends JPanel {
+public class Scoreboard extends JPanel {//
     private Game game;
     private Image background;
     private static String fileName = "Score";

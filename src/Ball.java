@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Ball extends JPanel implements Runnable {
+public class Ball extends JPanel implements Runnable {//
     private float xDeltaBall = 390;
     private float yDeltaBall = 400;
     private final int WIDTH_BALL = 13;

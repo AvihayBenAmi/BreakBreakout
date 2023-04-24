@@ -2,7 +2,7 @@ import javax.sound.sampled.*;
 import java.io.IOException;
 import java.util.Objects;
 
-public class MusicThread implements Runnable {
+public class MusicThread implements Runnable {//
     Thread openMusic;
     public static volatile boolean running = true;
 

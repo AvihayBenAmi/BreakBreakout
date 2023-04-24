@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Tray extends JPanel {
+public class Tray extends JPanel {//
 
     private int xDeltaPlayer = 350;
     private final int yDeltaPlayer = 420;

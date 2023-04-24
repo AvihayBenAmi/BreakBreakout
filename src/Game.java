@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Game extends JPanel {
+public class Game extends JPanel {//
     private Window window;
     private boolean show;
     private Image background;
