@@ -1,7 +1,7 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyboardInputs extends Thread implements KeyListener {
+public class KeyboardInputs extends Thread implements KeyListener {//
     private Game game;
     private Tray tray;
     private Ball ball;

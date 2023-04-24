@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class Window extends JFrame {
+public class Window extends JFrame {//
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 500;
