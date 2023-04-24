@@ -241,4 +241,40 @@ public class Game extends JPanel {//
         ball.paintBall(g);
         tray.paintTray(g);
     }
+
+    private void startBall() {
+        if (!checkStartBall) {
+            ball.startUpdateBall();
+            checkStartBall = true;
+        }
+    }
+
+    private void stopBall() {
+        if (checkStartBall) {
+            ball.stopUpdateBall();
+            checkStartBall = false;
+        }
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        paintImages(g);
+        if (this.playerName != null && !this.stop) {
+            if (arrayBricks.size() > 0) {
+                try {
+                    paintFunctions(g);
+                    startBall();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                try {
+                    winGameMassage();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        repaint();
+    }
 }

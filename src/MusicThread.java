@@ -11,6 +11,7 @@ public class MusicThread implements Runnable {//
         System.out.println("New thread: "+openMusic);
             openMusic.start();
     }
+
     @Override
     public void run() {
         Clip clip = null;

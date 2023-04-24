@@ -50,7 +50,7 @@ public class BackgroundMenu extends JPanel {//
         }
         jButtons[0].addActionListener(e -> {
             buttonSound();
-            thread.t.interrupt();
+            MusicThread.running = false;
             window.startGame();
         });
         jButtons[1].addActionListener(e -> {
