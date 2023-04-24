@@ -91,4 +91,10 @@ public class BackgroundMenu extends JPanel {//
             e.printStackTrace();
         }
     }
+    public void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        if (this.show) {
+            graphics.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
 }
