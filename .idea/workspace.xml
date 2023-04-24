@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="23.04.23 19:26">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Score.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BackgroundMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BackgroundMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MusicThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <list id="e687eeb7-c35e-4975-8986-9a118386d624" name="Changes by david" comment="">
       <change beforePath="$PROJECT_DIR$/src/BackgroundMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BackgroundMenu.java" afterDir="false" />
@@ -46,42 +40,8 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/Game.java">
       <ranges>
-        <range start1="14" end1="15" start2="14" end2="14" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="24" end1="26" start2="23" end2="25" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="34" end1="34" start2="33" end2="34" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="38" end1="39" start2="38" end2="38" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="50" end1="51" start2="49" end2="51" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="58" end1="59" start2="58" end2="58" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="62" end1="63" start2="61" end2="61" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="96" end1="96" start2="94" end2="95" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="107" end1="108" start2="106" end2="108" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="113" end1="115" start2="113" end2="113" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="123" end1="124" start2="121" end2="121" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="149" end1="149" start2="146" end2="147" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="167" end1="168" start2="165" end2="166" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="187" end1="187" start2="185" end2="186" changelist="0f72439a-c49a-4220-a8ad-a44396819627" />
-        <range start1="223" end1="243" start2="222" end2="222" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="260" end1="262" start2="239" end2="239" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="263" end1="263" start2="240" end2="276" changelist="e687eeb7-c35e-4975-8986-9a118386d624" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/BackgroundMenu.java">
-      <ranges>
-        <range start1="24" end1="24" start2="24" end2="25" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="46" end1="47" start2="47" end2="48" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="51" end1="52" start2="52" end2="53" changelist="e687eeb7-c35e-4975-8986-9a118386d624" />
-        <range start1="56" end1="57" start2="57" end2="58" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="61" end1="62" start2="62" end2="63" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="78" end1="84" start2="79" end2="80" changelist="e687eeb7-c35e-4975-8986-9a118386d624" />
-        <range start1="97" end1="97" start2="93" end2="99" changelist="e687eeb7-c35e-4975-8986-9a118386d624" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/MusicThread.java">
-      <ranges>
-        <range start1="5" end1="10" start2="5" end2="12" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="11" end1="11" start2="13" end2="14" changelist="e687eeb7-c35e-4975-8986-9a118386d624" />
-        <range start1="34" end1="37" start2="37" end2="45" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
-        <range start1="42" end1="44" start2="50" end2="51" changelist="98383e34-d792-436d-b1d3-e939f66f29e1" />
+        <range start1="188" end1="188" start2="188" end2="189" changelist="0f72439a-c49a-4220-a8ad-a44396819627" />
+        <range start1="242" end1="242" start2="243" end2="279" changelist="e687eeb7-c35e-4975-8986-9a118386d624" />
       </ranges>
     </file>
   </component>
@@ -153,7 +113,7 @@
       <workItem from="1681925631712" duration="1233000" />
       <workItem from="1682232568917" duration="14060000" />
       <workItem from="1682247832298" duration="4085000" />
-      <workItem from="1682265156826" duration="18622000" />
+      <workItem from="1682265156826" duration="18927000" />
     </task>
     <task id="LOCAL‎-00001" summary="22:42 13/04">
       <created>1681414987940</created>
@@ -400,7 +360,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682267166819</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL‎-00036" summary="23.04.23 19:26">
+      <created>1682284286649</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL‎-00036" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682284286649</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
