@@ -4,21 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="2404 12:55">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_15_35_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_15_35__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_16_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_16__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_53_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_53__Changes_.xml" beforeDir="false" />
+    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="0105 2037">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Score.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bricks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bricks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MusicThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tray.java" afterDir="false" />
     </list>
     <list id="e687eeb7-c35e-4975-8986-9a118386d624" name="Changes by david" comment="Changes by david" />
     <list id="0f72439a-c49a-4220-a8ad-a44396819627" name="Changes by אביחי" comment="Changes by אביחי" />
@@ -116,7 +106,7 @@
       <workItem from="1682326532740" duration="679000" />
       <workItem from="1682329678147" duration="4997000" />
       <workItem from="1682874558198" duration="12034000" />
-      <workItem from="1682943293642" duration="11898000" />
+      <workItem from="1682943293642" duration="16027000" />
     </task>
     <task id="LOCAL‎-00001" summary="22:42 13/04">
       <created>1681414987940</created>
@@ -426,7 +416,28 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682339739928</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL‎-00045" summary="0105 2006">
+      <created>1682960777525</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL‎-00045" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682960777525</updated>
+    </task>
+    <task id="LOCAL‎-00046" summary="0105 2037">
+      <created>1682962636964</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL‎-00046" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682962636964</updated>
+    </task>
+    <task id="LOCAL‎-00047" summary="0105 2037">
+      <created>1682962826055</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL‎-00047" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682962826055</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,14 +465,16 @@
     <MESSAGE value="2404 12:55" />
     <MESSAGE value="Changes by אביחי" />
     <MESSAGE value="Changes by david" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by david" />
+    <MESSAGE value="0105 2006" />
+    <MESSAGE value="0105 2037" />
+    <option name="LAST_COMMIT_MESSAGE" value="0105 2037" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Game.java</url>
-          <line>52</line>
+          <line>50</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>

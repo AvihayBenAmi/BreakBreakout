@@ -136,6 +136,7 @@ public class Game extends JPanel {//
                 calculatePoints(arrayBricks.get(i));
                 arrayBricks.remove(i);
                 ball.updateBallWhenIntersects();
+                repaint();
             }
         }
     }
@@ -230,20 +231,7 @@ public class Game extends JPanel {//
                 timer + " Finished     -> " + (finished ? "" : "didn't ") + "finish.";
     }
 
-    private void paintImages(Graphics g) {
-        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-        g.setColor(Color.white);
-        g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time, 3, 12);
-    }
 
-    public void paintFunctions(Graphics g) {
-        for (Bricks bricks : this.arrayBricks) {
-            bricks.paint(g);
-        }
-        ball.paintBall(g);
-        tray.paintTray(g);
-    }
 
     private void startBall() {
         if (!checkStartBall) {
@@ -270,7 +258,7 @@ public class Game extends JPanel {//
                 }
                 while (!stop) {
                     try {
-                        Thread.sleep(2);
+                        Thread.sleep(1);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -298,7 +286,20 @@ public class Game extends JPanel {//
             }
         }
     });
+    private void paintImages(Graphics g) {
+        g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        g.setColor(Color.white);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time, 3, 12);
+    }
 
+    public void paintFunctions(Graphics g) {
+        for (Bricks bricks : this.arrayBricks) {
+            bricks.paint(g);
+        }
+        ball.paintBall(g);
+        tray.paintTray(g);
+    }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintImages(g);
@@ -306,5 +307,6 @@ public class Game extends JPanel {//
             paintFunctions(g);
         }
         repaint();
+
     }
 }

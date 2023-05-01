@@ -1,3 +1,4 @@
 Scores table 
 
-Name -> fff      Points -> 10      Time -> 4 Finished     -> didn't finish
+Name -> ddd      Points -> 10      Time -> 3 Finished     -> didn't finish
+Name -> dd      Points -> 1100      Time -> 126 Finished     -> finish

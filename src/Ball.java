@@ -6,8 +6,8 @@ public class Ball extends JPanel implements Runnable {//
     private float yDeltaBall = 400;
     private final int WIDTH_BALL = 13;
     private final int HEIGHT_BALL = 20;
-    private float xDir = 0.3f;
-    private float yDir = 0.3f;
+    private float xDir = 0.2f;
+    private float yDir = 0.2f;
     private boolean running;
     private Thread updateBall;
 
@@ -20,7 +20,7 @@ public class Ball extends JPanel implements Runnable {//
         while (running) {
             try {
                 //System.out.println("Ball thread is running");
-                Thread.sleep(2);
+                Thread.sleep(1);
                 xDeltaBall += xDir;
                 if (xDeltaBall >= 775 || xDeltaBall <= 0) {
                     xDir *= -1;
