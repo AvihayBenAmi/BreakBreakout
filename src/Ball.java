@@ -9,7 +9,6 @@ public class Ball extends JPanel implements Runnable {//
     private float xDir = 0.3f;
     private float yDir = 0.3f;
     private boolean running;
-
     private Thread updateBall;
 
     public Ball() {
@@ -47,6 +46,7 @@ public class Ball extends JPanel implements Runnable {//
         this.running = false;
 
     }
+
     public synchronized void pauseUpdateBall() {
         this.running = false;
         try {
@@ -55,6 +55,7 @@ public class Ball extends JPanel implements Runnable {//
             throw new RuntimeException(e);
         }
     }
+
     public synchronized void resumeUpdateBall() {
         this.running = true;
         try {
