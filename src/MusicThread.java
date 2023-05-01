@@ -8,7 +8,7 @@ public class MusicThread implements Runnable {//
 
     public MusicThread() {
         openMusic = new Thread(this);
-        System.out.println("New thread: "+openMusic);
+        System.out.println("Open music thread: "+openMusic);
             openMusic.start();
     }
 

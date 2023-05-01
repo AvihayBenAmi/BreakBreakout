@@ -32,6 +32,9 @@ public class Game extends JPanel {//
     private Tray tray;
     private JFrame frameOfText;
     private boolean checkStartBall;
+    private boolean canPaint = false;
+    private boolean lose;
+    private boolean win;
 
 
     public Game(Window window) {
@@ -49,6 +52,8 @@ public class Game extends JPanel {//
         addKeyListener(new KeyboardInputs(this, this.tray));
         this.playerName = insertPlayerName();
         this.ball = new Ball();
+        //gameProcess.start();
+        //gameProcess();
     }
 
     private void addTimer() {
@@ -59,6 +64,7 @@ public class Game extends JPanel {//
 
     public void startTimer() {
         timer.start();
+        System.out.println("Timer is started");
     }
 
     public void stopTimer() {
@@ -106,12 +112,14 @@ public class Game extends JPanel {//
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frameOfText.removeNotify();
                 playerName = textField.getText();
+                frameOfText.removeNotify();
+                gameProcess.start();
             }
         });
         return playerName;
     }
+
 
     private void checkIntersectsWithPlate() {
         if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
@@ -128,7 +136,7 @@ public class Game extends JPanel {//
                     .intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
                             arrayBricks.get(i).getHeight())) {
                 intersectsSound();
-                System.out.println("HIT THE BRICK" + "i= " + i);
+                System.out.println("Hit the brick" + "i= " + i);
                 calculatePoints(arrayBricks.get(i));
                 arrayBricks.remove(i);
                 ball.updateBallWhenIntersects();
@@ -137,7 +145,8 @@ public class Game extends JPanel {//
     }
 
     private void loseGameMassage() throws FileNotFoundException {
-        if (ball.getyDeltaBall() > tray.getyDeltaPlayer() - 5) {//25
+        this.lose = false;
+        if (ball.getyDeltaBall() > tray.getyDeltaPlayer() - 1) {//25
             try {
                 Clip clip = AudioSystem.getClip();
                 AudioInputStream inputStream = AudioSystem.getAudioInputStream
@@ -149,9 +158,11 @@ public class Game extends JPanel {//
             }
             stopBall();
             finished = false;
+            stopTimer();
+            this.lose = true;
             showMessage(playerName + ", Game Over!" +
                     " \n Your Score is: " + pointsCounter + " Your time was " + time +
-                    " seconds, you " + (finished ? "" : "didn't ") + "finish");
+                    " seconds, you " + (finished ? "" : "didn't ") + " finish");
             Scoreboard.createFile(collectData());
             SwingUtilities.invokeLater(() -> window.openBackgroundMenu());//the screen didn't update because of the main thread so we added this function.
 
@@ -163,21 +174,24 @@ public class Game extends JPanel {//
     }
 
     public void gameStop() {
-        this.stop = true;
+        //this.stop = true;
         timer.stop();
+        stopBall();
         int input = JOptionPane.showConfirmDialog(this, "Do you want to exit the game? "
                 , "Game stopped", JOptionPane.YES_NO_OPTION);
         if (input == 0) {
             this.window.openBackgroundMenu();
+            //gameProcess.interrupt();צריך לסדר שהמהלך של המשחק הנוכחי מסתיים ולא ממשיך אם בחרנו לצאת
         } else {
             System.out.println("paused");
             this.stop = false;
         }
         timer.start();
-
+        ball.resumeUpdateBall(); // צריך לסדר את המשך תנועת הכדור שבחרנו לצאת מפאוז
     }
 
     private void winGameMassage() throws FileNotFoundException {
+        this.win = false;
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/winsquare-6993.wav")));
@@ -188,6 +202,8 @@ public class Game extends JPanel {//
         }
         stopBall();
         finished = true;
+        this.win = true;
+        stopTimer();
         JOptionPane.showConfirmDialog(this, playerName + ", You Won! \n Your Score is: " + pointsCounter + " Your time was " + time
                 , "Winner!", JOptionPane.PLAIN_MESSAGE);
         Scoreboard.createFile(collectData());
@@ -218,11 +234,6 @@ public class Game extends JPanel {//
                 timer + " Finished     -> " + (finished ? "" : "didn't ") + "finish.";
     }
 
-    public void startGame() {
-        this.stop = false;
-    }
-
-
     private void paintImages(Graphics g) {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         g.setColor(Color.white);
@@ -230,14 +241,10 @@ public class Game extends JPanel {//
         g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time, 3, 12);
     }
 
-    public void paintFunctions(Graphics g) throws FileNotFoundException {
+    public void paintFunctions(Graphics g) {
         for (Bricks bricks : this.arrayBricks) {
             bricks.paint(g);
         }
-        checkIntersectsWithPlate();
-        timer.start();
-        loseGameMassage();
-        checkIntersectsWithBricks();
         ball.paintBall(g);
         tray.paintTray(g);
     }
@@ -256,24 +263,51 @@ public class Game extends JPanel {//
         }
     }
 
+    Thread gameProcess = new Thread(new Runnable() {
+        public void run() {
+            System.out.println("Game process Thread " + gameProcess);
+            if (playerName != null && !stop) {
+                if (arrayBricks.size() > 0) {
+                    startTimer();
+                    startBall();
+                    canPaint = true;
+                }
+                while (!stop) {
+                    try {
+                        Thread.sleep(2);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    checkIntersectsWithPlate();
+                    try {
+                        loseGameMassage();
+                        if (lose) {
+                            break;
+                        }
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    checkIntersectsWithBricks();
+                    if (arrayBricks.size() == 0) {
+                        try {
+                            winGameMassage();
+                            if (win) {
+                                break;
+                            }
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+        }
+    });
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintImages(g);
-        if (this.playerName != null && !this.stop) {
-            if (arrayBricks.size() > 0) {
-                try {
-                    paintFunctions(g);
-                    startBall();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                try {
-                    winGameMassage();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+        if (canPaint) {
+            paintFunctions(g);
         }
         repaint();
     }

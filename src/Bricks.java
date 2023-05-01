@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Bricks {//
+public class Bricks {
     private int x;
     private int y;
     private final int width=70;

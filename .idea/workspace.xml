@@ -4,15 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="2404 11:56" />
-    <list id="e687eeb7-c35e-4975-8986-9a118386d624" name="Changes by david" comment="">
-      <change beforePath="$PROJECT_DIR$/src/BackgroundMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BackgroundMenu.java" afterDir="false" />
+    <list default="true" id="98383e34-d792-436d-b1d3-e939f66f29e1" name="Changes" comment="2404 12:55">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_15_35_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_15_35__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_16_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_16__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_53_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_04_2023_17_53__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Score.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bricks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bricks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MusicThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tray.java" afterDir="false" />
     </list>
-    <list id="0f72439a-c49a-4220-a8ad-a44396819627" name="Changes by אביחי" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-    </list>
+    <list id="e687eeb7-c35e-4975-8986-9a118386d624" name="Changes by david" comment="Changes by david" />
+    <list id="0f72439a-c49a-4220-a8ad-a44396819627" name="Changes by אביחי" comment="Changes by אביחי" />
     <list id="4f55291f-eda2-4887-85cc-0129616e88fc" name="Changes by עומר" comment="Changes by עומר" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,14 +43,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Game.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Game.java">
-      <ranges>
-        <range start1="188" end1="188" start2="188" end2="189" changelist="0f72439a-c49a-4220-a8ad-a44396819627" />
-        <range start1="242" end1="242" start2="243" end2="279" changelist="e687eeb7-c35e-4975-8986-9a118386d624" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -113,7 +114,9 @@
       <workItem from="1682247832298" duration="4085000" />
       <workItem from="1682265156826" duration="18927000" />
       <workItem from="1682326532740" duration="679000" />
-      <workItem from="1682329678147" duration="349000" />
+      <workItem from="1682329678147" duration="4997000" />
+      <workItem from="1682874558198" duration="12034000" />
+      <workItem from="1682943293642" duration="11898000" />
     </task>
     <task id="LOCAL‎-00001" summary="22:42 13/04">
       <created>1681414987940</created>
@@ -381,7 +384,49 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682330019876</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL‎-00039" summary="2404 12:55">
+      <created>1682330129830</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL‎-00039" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682330129830</updated>
+    </task>
+    <task id="LOCAL‎-00040" summary="2404 12:55">
+      <created>1682330179102</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL‎-00040" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682330179102</updated>
+    </task>
+    <task id="LOCAL‎-00041" summary="Changes by אביחי">
+      <created>1682339643764</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL‎-00041" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682339643764</updated>
+    </task>
+    <task id="LOCAL‎-00042" summary="Changes by david">
+      <created>1682339689820</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL‎-00042" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682339689820</updated>
+    </task>
+    <task id="LOCAL‎-00043" summary="Changes by david">
+      <created>1682339724151</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL‎-00043" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682339724151</updated>
+    </task>
+    <task id="LOCAL‎-00044" summary="Changes by david">
+      <created>1682339739928</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL‎-00044" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682339739928</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,6 +451,20 @@
     <MESSAGE value="23.04.23 15:13" />
     <MESSAGE value="23.04.23 19:26" />
     <MESSAGE value="2404 11:56" />
-    <option name="LAST_COMMIT_MESSAGE" value="2404 11:56" />
+    <MESSAGE value="2404 12:55" />
+    <MESSAGE value="Changes by אביחי" />
+    <MESSAGE value="Changes by david" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by david" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Game.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

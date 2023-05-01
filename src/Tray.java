@@ -15,7 +15,6 @@ public class Tray extends JPanel {//
         if (xDeltaPlayer + value > 0 && xDeltaPlayer + value < 685) {// צריך לשנות לגודל קבוע
             xDeltaPlayer += value;
         }
-        repaint();
     }
 
     public int getxDeltaPlayer() {

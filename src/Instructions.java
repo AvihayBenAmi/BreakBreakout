@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Instructions extends JPanel {//
+public class Instructions extends JPanel {
 
 
     private boolean show;

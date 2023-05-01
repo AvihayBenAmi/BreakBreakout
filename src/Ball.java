@@ -6,22 +6,22 @@ public class Ball extends JPanel implements Runnable {//
     private float yDeltaBall = 400;
     private final int WIDTH_BALL = 13;
     private final int HEIGHT_BALL = 20;
-    private float xDir = 0.2f;
-    private float yDir = 0.2f;
+    private float xDir = 0.3f;
+    private float yDir = 0.3f;
     private boolean running;
 
     private Thread updateBall;
 
     public Ball() {
         updateBall = new Thread(this);
-        System.out.println("New thread: " + updateBall);
+        System.out.println("update ball thread: " + updateBall);
     }
 
     public void run() {
         while (running) {
             try {
-                System.out.println("Ball thread is running");
-                Thread.sleep(1);
+                //System.out.println("Ball thread is running");
+                Thread.sleep(2);
                 xDeltaBall += xDir;
                 if (xDeltaBall >= 775 || xDeltaBall <= 0) {
                     xDir *= -1;
@@ -38,13 +38,30 @@ public class Ball extends JPanel implements Runnable {//
         }
     }
 
-    public void startUpdateBall() {
+    public synchronized void startUpdateBall() {
         this.running = true;
         updateBall.start();
     }
 
-    public void stopUpdateBall() {
+    public synchronized void stopUpdateBall() {
         this.running = false;
+
+    }
+    public synchronized void pauseUpdateBall() {
+        this.running = false;
+        try {
+            updateBall.wait();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public synchronized void resumeUpdateBall() {
+        this.running = true;
+        try {
+            updateBall.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void updateBallWhenIntersects() {
