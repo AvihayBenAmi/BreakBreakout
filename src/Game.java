@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Game extends JPanel {//
-    private Window window;
-    private boolean show;
+    private  Window window;
     private Image background;
     private int pointsCounter;
     private String playerName;
@@ -40,7 +39,6 @@ public class Game extends JPanel {//
     public Game(Window window) {
         this.window = window;
         this.tray = new Tray();
-        this.show = true;
         addBackgroundImage();
         this.time = 0;
         this.pointsCounter = 0;
@@ -52,8 +50,6 @@ public class Game extends JPanel {//
         addKeyListener(new KeyboardInputs(this, this.tray));
         this.playerName = insertPlayerName();
         this.ball = new Ball();
-        //gameProcess.start();
-        //gameProcess();
     }
 
     private void addTimer() {
