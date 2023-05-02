@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Game extends JPanel {//
-    private  Window window;
+    private Window window;
     private Image background;
     private int pointsCounter;
     private String playerName;
@@ -131,11 +131,11 @@ public class Game extends JPanel {//
             if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
                     .intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
                             arrayBricks.get(i).getHeight())) {
-                intersectsSound();
                 System.out.println("Hit the brick" + "i= " + i);
+                intersectsSound();
+                ball.updateBallWhenIntersects();
                 calculatePoints(arrayBricks.get(i));
                 arrayBricks.remove(i);
-                ball.updateBallWhenIntersects();
                 repaint();
             }
         }
@@ -232,7 +232,6 @@ public class Game extends JPanel {//
     }
 
 
-
     private void startBall() {
         if (!checkStartBall) {
             ball.startUpdateBall();
@@ -286,23 +285,31 @@ public class Game extends JPanel {//
             }
         }
     });
+
     private void paintImages(Graphics g) {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time, 3, 12);
+        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time + "Bricks left: ->    " + arrayBricks.size(), 3, 12);
     }
 
     public void paintFunctions(Graphics g) {
-        for (Bricks bricks : this.arrayBricks) {
-            bricks.paint(g);
+        try {
+            for (Bricks bricks : this.arrayBricks) {
+                bricks.paint(g);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         ball.paintBall(g);
         tray.paintTray(g);
     }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintImages(g);
+
         if (canPaint) {
             paintFunctions(g);
         }
