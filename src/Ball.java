@@ -67,7 +67,7 @@ public class Ball extends JPanel implements Runnable {//
 
     public void updateBallWhenIntersects() {
         yDeltaBall += yDir * 2 - 1;//מונע גלישה של הכדור על המשטח
-        this.yDir *= -1;
+        this.yDir *= -1.01;
         System.out.println("update ball intersects");
     }
 

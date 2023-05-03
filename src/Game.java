@@ -78,14 +78,12 @@ public class Game extends JPanel {//
     private void createBricks() {
         int indexX = FIRST_BRICK_LEFT_X_CORNER;
         int indexY = FIRST_BRICK_LEFT_Y_CORNER;//10
-        int k = 0;
         for (int i = 0; i < NUMBER_OF_BRICK_ROWS; i++) {
             for (int t = 0; t < NUMBER_OF_BRICK_COL; t++) {
                 Bricks bricks = new Bricks(indexX, indexY, colors[i]);
                 this.arrayBricks.add(bricks);
                 indexX += brick.getWidth();
             }
-            k++;
             indexY += brick.getHeight();
             indexX = FIRST_BRICK_LEFT_X_CORNER;
         }

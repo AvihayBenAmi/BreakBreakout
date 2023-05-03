@@ -1,3 +1,5 @@
 Scores table 
 
-Name -> fff      Points -> 1100      Time -> 159 Finished     -> finish
+Name -> גגגגכ      Points -> 125      Time -> 34 Finished     -> didn't finish
+Name -> ללל      Points -> 85      Time -> 22 Finished     -> didn't finish
+Name ->       Points -> 20      Time -> 7 Finished     -> didn't finish
