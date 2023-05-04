@@ -30,10 +30,10 @@ public class Game extends JPanel {//
     private Ball ball;
     private Tray tray;
     private JFrame frameOfText;
-    private boolean checkStartBall;
+//    private boolean checkStartBall;
     private boolean canPaint;
-    private boolean lose;
-    private boolean win;
+    private boolean ifLose;
+    private boolean ifWin;
     private String gameData;
 
     public Game(Window window) {
@@ -69,7 +69,7 @@ public class Game extends JPanel {//
                     checkIntersectsWithPlate();
                     try {
                         loseGameMassage();
-                        if (lose) {
+                        if (ifLose) {
                             break;
                         }
                     } catch (FileNotFoundException e) {
@@ -79,7 +79,7 @@ public class Game extends JPanel {//
                     if (arrayBricks.size() == 0) {
                         try {
                             winGameMassage();
-                            if (win) {
+                            if (ifWin) {
                                 break;
                             }
                         } catch (FileNotFoundException e) {
@@ -184,7 +184,7 @@ public class Game extends JPanel {//
     }
 
     private void loseGameMassage() throws FileNotFoundException {
-        this.lose = false;
+        this.ifLose = false;
         if (ball.getyDeltaBall() > tray.getyDeltaPlayer() - 1) {//25
             try {
                 Clip clip = AudioSystem.getClip();
@@ -198,7 +198,7 @@ public class Game extends JPanel {//
             stopBall();
             finished = false;
             stopTimer();
-            this.lose = true;
+            this.ifLose = true;
             showMessage(playerName + ", Game Over!" +
                     " \n Your Score is: " + pointsCounter + " Your time was " + time +
                     " seconds, you " + (finished ? "" : "didn't ") + " finish");
@@ -230,7 +230,7 @@ public class Game extends JPanel {//
     }
 
     private void winGameMassage() throws FileNotFoundException {
-        this.win = false;
+        this.ifWin = false;
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/data/winsquare-6993.wav")));
@@ -241,7 +241,7 @@ public class Game extends JPanel {//
         }
         stopBall();
         finished = true;
-        this.win = true;
+        this.ifWin = true;
         stopTimer();
         JOptionPane.showConfirmDialog(this, playerName + ", You Won! \n Your Score is: " + pointsCounter + " Your time was " + time
                 , "Winner!", JOptionPane.PLAIN_MESSAGE);
@@ -275,17 +275,17 @@ public class Game extends JPanel {//
     }
 
     private void startBall() {
-        if (!checkStartBall) {
+//        if (!checkStartBall) {
             ball.startUpdateBall();
-            checkStartBall = true;
-        }
+//            checkStartBall = true;
+       // }
     }
 
     private void stopBall() {
-        if (checkStartBall) {
+//        if (checkStartBall) {
             ball.stopUpdateBall();
-            checkStartBall = false;
-        }
+//            checkStartBall = false;
+        //}
     }
 
     private void paintImages(Graphics g) {
@@ -298,6 +298,7 @@ public class Game extends JPanel {//
     public void paintFunctions(Graphics g) {
         try {
             for (Bricks bricks : this.arrayBricks) {
+                if(bricks!=null)
                 bricks.paint(g);
             }
         } catch (Exception e) {
