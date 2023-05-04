@@ -16,7 +16,7 @@ public class Game extends JPanel {//
     private Image background;
     private int pointsCounter;
     private String playerName;
-    private boolean stop;
+    private boolean pause;
     private Timer timer;
     private int time;
     private boolean finished;
@@ -31,10 +31,10 @@ public class Game extends JPanel {//
     private Tray tray;
     private JFrame frameOfText;
     private boolean checkStartBall;
-    private boolean canPaint = false;
+    private boolean canPaint;
     private boolean lose;
     private boolean win;
-
+    private String gameData;
 
     public Game(Window window) {
         this.window = window;
@@ -46,12 +46,50 @@ public class Game extends JPanel {//
         this.brick = new Bricks(0, 0, null);
         this.arrayBricks = new ArrayList<>();
         createBricks();
-        this.stop = false;
+        this.pause = false;
         addKeyListener(new KeyboardInputs(this, this.tray));
         this.playerName = insertPlayerName();
         this.ball = new Ball();
     }
-
+    Thread gameProcess = new Thread(new Runnable() {
+        public void run() {
+            System.out.println("Game process Thread " + gameProcess);
+            if (playerName != null && !pause) {
+                if (arrayBricks.size() > 0) {
+                    startTimer();
+                    startBall();
+                    canPaint = true;
+                }
+                while (!pause) {
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    checkIntersectsWithPlate();
+                    try {
+                        loseGameMassage();
+                        if (lose) {
+                            break;
+                        }
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    checkIntersectsWithBricks();
+                    if (arrayBricks.size() == 0) {
+                        try {
+                            winGameMassage();
+                            if (win) {
+                                break;
+                            }
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+        }
+    });
     private void addTimer() {
         timer = new Timer(1000, e -> {
             time++;
@@ -65,6 +103,13 @@ public class Game extends JPanel {//
 
     public void stopTimer() {
         timer.stop();
+        System.out.println("Timer is stopped");
+
+    }
+    public void pauseTimer() {
+        timer.stop();
+        System.out.println("Timer is paused");
+
     }
 
     private void addBackgroundImage() {
@@ -113,7 +158,6 @@ public class Game extends JPanel {//
         });
         return playerName;
     }
-
 
     private void checkIntersectsWithPlate() {
         if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
@@ -168,8 +212,8 @@ public class Game extends JPanel {//
         JOptionPane.showMessageDialog(null, message);
     }
 
-    public void gameStop() {
-        //this.stop = true;
+    public void gamePause() {
+        this.pause = true;
         timer.stop();
         stopBall();
         int input = JOptionPane.showConfirmDialog(this, "Do you want to exit the game? "
@@ -179,7 +223,7 @@ public class Game extends JPanel {//
             //gameProcess.interrupt();צריך לסדר שהמהלך של המשחק הנוכחי מסתיים ולא ממשיך אם בחרנו לצאת
         } else {
             System.out.println("paused");
-            this.stop = false;
+            this.pause = false;
         }
         timer.start();
         ball.resumeUpdateBall(); // צריך לסדר את המשך תנועת הכדור שבחרנו לצאת מפאוז
@@ -224,11 +268,11 @@ public class Game extends JPanel {//
         String name = this.playerName;
         int points = this.pointsCounter;
         int timer = this.time;
-        System.out.println("Name -> " + name + "      Points -> " + points + "      Time -> " + timer + (finished ? "" : "didn't") + "finish");
-        return "Name -> " + name + "      Points -> " + points + "      Time -> " +
-                timer + " Finished     -> " + (finished ? "" : "didn't ") + "finish.";
+        this.gameData = "Name:  " + name + "      Points:  " + points + "      Time:  " +
+                timer + " Finished:     " + (finished ? "" : " didn't ") + " finish.";
+        System.out.println(gameData);
+        return gameData;
     }
-
 
     private void startBall() {
         if (!checkStartBall) {
@@ -244,51 +288,13 @@ public class Game extends JPanel {//
         }
     }
 
-    Thread gameProcess = new Thread(new Runnable() {
-        public void run() {
-            System.out.println("Game process Thread " + gameProcess);
-            if (playerName != null && !stop) {
-                if (arrayBricks.size() > 0) {
-                    startTimer();
-                    startBall();
-                    canPaint = true;
-                }
-                while (!stop) {
-                    try {
-                        Thread.sleep(1);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    checkIntersectsWithPlate();
-                    try {
-                        loseGameMassage();
-                        if (lose) {
-                            break;
-                        }
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    checkIntersectsWithBricks();
-                    if (arrayBricks.size() == 0) {
-                        try {
-                            winGameMassage();
-                            if (win) {
-                                break;
-                            }
-                        } catch (FileNotFoundException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-            }
-        }
-    });
+
 
     private void paintImages(Graphics g) {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Name: --> " + playerName + "   Points: -->   " + pointsCounter + "   Timer: -->   " + time + "Bricks left: ->    " + arrayBricks.size(), 3, 12);
+        g.drawString("Name:   " + playerName + "   Points:   " + pointsCounter + "   Timer:   " + time + "   Bricks left:   " + arrayBricks.size(), 3, 12);
     }
 
     public void paintFunctions(Graphics g) {
@@ -299,7 +305,6 @@ public class Game extends JPanel {//
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         ball.paintBall(g);
         tray.paintTray(g);
     }
@@ -307,7 +312,6 @@ public class Game extends JPanel {//
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintImages(g);
-
         if (canPaint) {
             paintFunctions(g);
         }

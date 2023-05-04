@@ -1,5 +1,3 @@
 Scores table 
 
-Name -> גגגגכ      Points -> 125      Time -> 34 Finished     -> didn't finish
-Name -> ללל      Points -> 85      Time -> 22 Finished     -> didn't finish
-Name ->       Points -> 20      Time -> 7 Finished     -> didn't finish
+Name:  kkk      Points:  30      Time:  10 Finished:      didn't  finish

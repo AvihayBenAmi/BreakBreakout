@@ -17,7 +17,8 @@ public class Ball extends JPanel implements Runnable {//
     }
 
     public void run() {
-        while (running) {
+        while (true) {
+            if(running){
             try {
                 //System.out.println("Ball thread is running");
                 Thread.sleep(1);
@@ -35,6 +36,9 @@ public class Ball extends JPanel implements Runnable {//
                 e.printStackTrace();
             }
         }
+        else{
+        continue;}
+        }
     }
 
     public synchronized void startUpdateBall() {
@@ -49,20 +53,10 @@ public class Ball extends JPanel implements Runnable {//
 
     public synchronized void pauseUpdateBall() {
         this.running = false;
-        try {
-            updateBall.wait();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public synchronized void resumeUpdateBall() {
         this.running = true;
-        try {
-            updateBall.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void updateBallWhenIntersects() {

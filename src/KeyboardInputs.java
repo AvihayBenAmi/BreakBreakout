@@ -31,7 +31,7 @@ public class KeyboardInputs extends Thread implements KeyListener {//
                 System.out.println("Right");
                 break;
             case KeyEvent.VK_ESCAPE: //לסדר פאוז לפי לחיצה על P ושחרור בלחיצה על P
-                game.gameStop();
+                game.gamePause();
                 break;
         }
 
