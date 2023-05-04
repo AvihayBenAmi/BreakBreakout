@@ -288,8 +288,6 @@ public class Game extends JPanel {//
         }
     }
 
-
-
     private void paintImages(Graphics g) {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         g.setColor(Color.white);
