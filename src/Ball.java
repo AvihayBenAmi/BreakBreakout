@@ -18,26 +18,26 @@ public class Ball extends JPanel implements Runnable {//
 
     public void run() {
         while (true) {
-            if(running){
-            try {
-                //System.out.println("Ball thread is running");
-                Thread.sleep(1);
-                xDeltaBall += xDir;
-                if (xDeltaBall >= 775 || xDeltaBall <= 0) {
-                    xDir *= -1;
-                    System.out.println("update ball");
+            if (!this.running) {
+                continue;}
+            else{
+                try {
+                    //System.out.println("Ball thread is running");
+                    Thread.sleep(1);
+                    xDeltaBall += xDir;
+                    if (xDeltaBall >= 775 || xDeltaBall <= 0) {
+                        xDir *= -1;
+                        System.out.println("update ball");
+                    }
+                    yDeltaBall -= yDir;
+                    if (0 > yDeltaBall || yDeltaBall > 500) {
+                        yDir *= -1;
+                        System.out.println("update ball");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                yDeltaBall -= yDir;
-                if (0 > yDeltaBall || yDeltaBall > 500) {
-                    yDir *= -1;
-                    System.out.println("update ball");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-        }
-        else{
-        continue;}
         }
     }
 
@@ -48,15 +48,13 @@ public class Ball extends JPanel implements Runnable {//
 
     public synchronized void stopUpdateBall() {
         this.running = false;
-
     }
-
     public synchronized void pauseUpdateBall() {
         this.running = false;
     }
-
     public synchronized void resumeUpdateBall() {
         this.running = true;
+        System.out.println("Ball resumed");
     }
 
     public void updateBallWhenIntersects() {

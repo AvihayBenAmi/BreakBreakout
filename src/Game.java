@@ -30,7 +30,6 @@ public class Game extends JPanel {//
     private Ball ball;
     private Tray tray;
     private JFrame frameOfText;
-//    private boolean checkStartBall;
     private boolean canPaint;
     private boolean ifLose;
     private boolean ifWin;
@@ -51,6 +50,7 @@ public class Game extends JPanel {//
         this.playerName = insertPlayerName();
         this.ball = new Ball();
     }
+
     Thread gameProcess = new Thread(new Runnable() {
         public void run() {
             System.out.println("Game process Thread " + gameProcess);
@@ -90,6 +90,7 @@ public class Game extends JPanel {//
             }
         }
     });
+
     private void addTimer() {
         timer = new Timer(1000, e -> {
             time++;
@@ -106,6 +107,7 @@ public class Game extends JPanel {//
         System.out.println("Timer is stopped");
 
     }
+
     public void pauseTimer() {
         timer.stop();
         System.out.println("Timer is paused");
@@ -212,22 +214,28 @@ public class Game extends JPanel {//
         JOptionPane.showMessageDialog(null, message);
     }
 
-    public void gamePause() {
-        this.pause = true;
-        timer.stop();
-        stopBall();
-        int input = JOptionPane.showConfirmDialog(this, "Do you want to exit the game? "
-                , "Game stopped", JOptionPane.YES_NO_OPTION);
-        if (input == 0) {
-            this.window.openBackgroundMenu();
-            //gameProcess.interrupt();צריך לסדר שהמהלך של המשחק הנוכחי מסתיים ולא ממשיך אם בחרנו לצאת
-        } else {
-            System.out.println("paused");
-            this.pause = false;
+    public void gamePause(Boolean pauseStatus) {
+        if(pauseStatus) {
+            this.pause = true;
+            timer.stop();
+            pauseBall();
+            int input = JOptionPane.showConfirmDialog(this, "Do you want to exit the game? "
+                    , "Game stopped", JOptionPane.YES_NO_OPTION);
+            if (input == 0) {
+                this.window.openBackgroundMenu();
+                //gameProcess.interrupt();צריך לסדר שהמהלך של המשחק הנוכחי מסתיים ולא ממשיך אם בחרנו לצאת
+            } else {
+                System.out.println("paused, enter R to continue");
+            }
         }
-        timer.start();
-        ball.resumeUpdateBall(); // צריך לסדר את המשך תנועת הכדור שבחרנו לצאת מפאוז
-    }
+            else  {
+                this.pause = false;
+            System.out.println("game resumed");
+            timer.start();
+                resumeBall(); // צריך לסדר את המשך תנועת הכדור שבחרנו לצאת מפאוז
+            }
+        }
+
 
     private void winGameMassage() throws FileNotFoundException {
         this.ifWin = false;
@@ -275,17 +283,19 @@ public class Game extends JPanel {//
     }
 
     private void startBall() {
-//        if (!checkStartBall) {
-            ball.startUpdateBall();
-//            checkStartBall = true;
-       // }
+        ball.startUpdateBall();
     }
 
     private void stopBall() {
-//        if (checkStartBall) {
-            ball.stopUpdateBall();
-//            checkStartBall = false;
-        //}
+        ball.stopUpdateBall();
+    }
+
+    private void pauseBall() {
+        ball.pauseUpdateBall();
+    }
+
+    private void resumeBall() {
+        ball.resumeUpdateBall();
     }
 
     private void paintImages(Graphics g) {
@@ -298,8 +308,8 @@ public class Game extends JPanel {//
     public void paintFunctions(Graphics g) {
         try {
             for (Bricks bricks : this.arrayBricks) {
-                if(bricks!=null)
-                bricks.paint(g);
+                if (bricks != null)
+                    bricks.paint(g);
             }
         } catch (Exception e) {
             e.printStackTrace();
