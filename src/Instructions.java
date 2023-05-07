@@ -30,7 +30,7 @@ public class Instructions extends JPanel {
 
     public void addImage() {
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/data/instructionInHebrew.jpg")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/data/brick breaker roll.jpg")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
