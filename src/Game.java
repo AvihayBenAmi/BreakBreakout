@@ -60,7 +60,7 @@ public class Game extends JPanel {//
                     startBall();
                     canPaint = true;
                 }
-                while (!pause) {
+                while (true) {
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException e) {
@@ -105,12 +105,6 @@ public class Game extends JPanel {//
     public void stopTimer() {
         timer.stop();
         System.out.println("Timer is stopped");
-
-    }
-
-    public void pauseTimer() {
-        timer.stop();
-        System.out.println("Timer is paused");
 
     }
 
@@ -215,7 +209,7 @@ public class Game extends JPanel {//
     }
 
     public void gamePause(Boolean pauseStatus) {
-        if(pauseStatus) {
+        if (pauseStatus) {
             this.pause = true;
             timer.stop();
             pauseBall();
@@ -223,19 +217,16 @@ public class Game extends JPanel {//
                     , "Game stopped", JOptionPane.YES_NO_OPTION);
             if (input == 0) {
                 this.window.openBackgroundMenu();
-                //gameProcess.interrupt();צריך לסדר שהמהלך של המשחק הנוכחי מסתיים ולא ממשיך אם בחרנו לצאת
             } else {
                 System.out.println("paused, enter R to continue");
             }
-        }
-            else  {
-                this.pause = false;
+        } else {
+            this.pause = false;
             System.out.println("game resumed");
             timer.start();
-                resumeBall(); // צריך לסדר את המשך תנועת הכדור שבחרנו לצאת מפאוז
-            }
+            resumeBall();
         }
-
+    }
 
     private void winGameMassage() throws FileNotFoundException {
         this.ifWin = false;
@@ -291,11 +282,11 @@ public class Game extends JPanel {//
     }
 
     private void pauseBall() {
-        ball.pauseUpdateBall();
+        this.ball.pauseUpdateBall();
     }
 
     private void resumeBall() {
-        ball.resumeUpdateBall();
+        this.ball.resumeUpdateBall();
     }
 
     private void paintImages(Graphics g) {
@@ -325,6 +316,5 @@ public class Game extends JPanel {//
             paintFunctions(g);
         }
         repaint();
-
     }
 }

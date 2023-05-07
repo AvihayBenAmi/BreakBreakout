@@ -1,42 +1,60 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class Ball extends JPanel implements Runnable {//
     private float xDeltaBall = 390;
     private float yDeltaBall = 400;
     private final int WIDTH_BALL = 13;
     private final int HEIGHT_BALL = 20;
-    private float xDir = 0.2f;
+    //private float xDir = 0.2f;
+    private float xDir;
+
     private float yDir = 0.2f;
     private boolean running;
+    private boolean paused;
     private Thread updateBall;
+    private final Object pauseLock = new Object();
 
     public Ball() {
+        Random random = new Random();
+        this.xDir = random.nextFloat(-0.2f, 0.2f);
         updateBall = new Thread(this);
         System.out.println("update ball thread: " + updateBall);
     }
 
     public void run() {
-        while (true) {
-            if (!this.running) {
-                continue;}
-            else{
-                try {
-                    //System.out.println("Ball thread is running");
-                    Thread.sleep(1);
-                    xDeltaBall += xDir;
-                    if (xDeltaBall >= 775 || xDeltaBall <= 0) {
-                        xDir *= -1;
-                        System.out.println("update ball");
-                    }
-                    yDeltaBall -= yDir;
-                    if (0 > yDeltaBall || yDeltaBall > 500) {
-                        yDir *= -1;
-                        System.out.println("update ball");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+        while (running) {
+            synchronized (pauseLock) {
+                if (!running) {
+                    break;
                 }
+                if (paused) {
+                    try {
+                        pauseLock.wait();
+                    } catch (InterruptedException e) {
+                        break;
+                    }
+                    if (!running) {
+                        break;
+                    }
+                }
+            }
+            try {
+                //System.out.println("Ball thread is running");
+                Thread.sleep(1);
+                xDeltaBall += xDir;
+                if (xDeltaBall >= 775 || xDeltaBall <= 0) {
+                    xDir *= -1;
+                    System.out.println("update ball");
+                }
+                yDeltaBall -= yDir;
+                if (0 > yDeltaBall || yDeltaBall > 500) {
+                    yDir *= -1;
+                    System.out.println("update ball");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -44,22 +62,36 @@ public class Ball extends JPanel implements Runnable {//
     public synchronized void startUpdateBall() {
         this.running = true;
         updateBall.start();
+        System.out.println("Ball started");
     }
 
     public synchronized void stopUpdateBall() {
         this.running = false;
+        System.out.println("Ball stopped");
     }
+
     public synchronized void pauseUpdateBall() {
-        this.running = false;
+        this.paused = true;
+        System.out.println("Ball paused");
     }
+
     public synchronized void resumeUpdateBall() {
-        this.running = true;
+        synchronized (pauseLock) {
+            this.paused = false;
+            pauseLock.notifyAll();
+        }
         System.out.println("Ball resumed");
     }
 
     public void updateBallWhenIntersects() {
-        yDeltaBall += yDir * 2 - 1;//מונע גלישה של הכדור על המשטח
-        this.yDir *= -1.01;
+        Random random = new Random();
+        Float temp;
+        yDeltaBall += yDir - 1;
+        this.yDir *= -1.015;
+        do {
+            temp = random.nextFloat(-1, 1);
+        }
+        while (temp == 0);
         System.out.println("update ball intersects");
     }
 
