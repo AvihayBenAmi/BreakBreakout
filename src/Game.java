@@ -156,22 +156,30 @@ public class Game extends JPanel {//
     }
 
     private void checkIntersectsWithPlate() {
+        boolean isCornerTray=false;
         if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
                 .intersects(new Rectangle(tray.getxDeltaPlayer(), tray.getyDeltaPlayer(), 100, 25))) {
+//            if(){//להשלים חישוב
+//                isCornerTray=true;
+//            }
             intersectsSound();
             System.out.println("Hit the Tray");
-            ball.updateBallWhenIntersects();
+            ball.updateBallWhenIntersects(isCornerTray);
         }
     }
 
     private void checkIntersectsWithBricks() {
+        boolean isCornerBrick=false;
         for (int i = 0; i < arrayBricks.size(); i++) {
             if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
                     .intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
                             arrayBricks.get(i).getHeight())) {
+                //            if(){//להשלים חישוב
+//                isCornerBrick=true;
+//            }
                 System.out.println("Hit the brick" + "i= " + i);
                 intersectsSound();
-                ball.updateBallWhenIntersects();
+                ball.updateBallWhenIntersects(isCornerBrick);
                 calculatePoints(arrayBricks.get(i));
                 arrayBricks.remove(i);
                 repaint();
@@ -297,6 +305,11 @@ public class Game extends JPanel {//
     }
 
     public void paintFunctions(Graphics g) {
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         try {
             for (Bricks bricks : this.arrayBricks) {
                 if (bricks != null)
