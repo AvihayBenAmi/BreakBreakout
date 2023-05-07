@@ -1,3 +1,4 @@
 Scores table 
 
-Name:  ddd      Points:  410      Time:  54 Finished:      didn't  finish
+Name:  omer      Points:  1100      Time:  102 Finished:      finish
+Name:  fgf      Points:  10      Time:  4 Finished:      didn't  finish
