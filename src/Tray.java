@@ -19,7 +19,7 @@ public class Tray extends JPanel {//
 
     public int getxDeltaPlayer() {
         return xDeltaPlayer;
-    }
+    }//
 
     public int getyDeltaPlayer() {
         return yDeltaPlayer;
