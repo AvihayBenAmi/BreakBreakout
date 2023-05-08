@@ -156,30 +156,41 @@ public class Game extends JPanel {//
     }
 
     private void checkIntersectsWithPlate() {
-        boolean isCornerTray=false;
-        if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
-                .intersects(new Rectangle(tray.getxDeltaPlayer(), tray.getyDeltaPlayer(), 100, 25))) {
-//            if(){//להשלים חישוב
-//                isCornerTray=true;
-//            }
+        final int IS_CENTER_TRAY = 0;
+        final int IS_LEFT_CORNER_TRAY = 1;
+        final int IS_RIGHT_CORNER_TRAY = 2;
+        int parameter;
+        Rectangle ballPosition = new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL());
+        Rectangle trayPosition = new Rectangle(tray.getxDeltaPlayer(), tray.getyDeltaPlayer(), tray.getWidthTraySize(), tray.getHeightTraySize());
+        Rectangle trayCornerPositionLeft = new Rectangle(tray.getxDeltaPlayer(), tray.getyDeltaPlayer(), 5, tray.getHeightTraySize());
+        Rectangle trayCornerPositionRight = new Rectangle(tray.getxDeltaPlayer() + tray.getWidthTraySize() - 5, tray.getyDeltaPlayer(), 5, tray.getHeightTraySize());
+        if (ballPosition.intersects(trayPosition)) {
+            if (ballPosition.intersects(trayCornerPositionLeft)) {
+                parameter = IS_LEFT_CORNER_TRAY;
+                System.out.println("Hit the left corner Tray");
+            } else if (ballPosition.intersects(trayCornerPositionRight)) {
+                System.out.println("Hit the right corner Tray");
+                parameter = IS_RIGHT_CORNER_TRAY;
+            } else {
+                System.out.println("Hit the centre Tray");
+                parameter = IS_CENTER_TRAY;
+            }
             intersectsSound();
-            System.out.println("Hit the Tray");
-            ball.updateBallWhenIntersects(isCornerTray);
+            ball.updateBallWhenIntersects(parameter);
         }
+
     }
 
+
     private void checkIntersectsWithBricks() {
-        boolean isCornerBrick=false;
+        final int IS_BRICK_CORNER = 3;
         for (int i = 0; i < arrayBricks.size(); i++) {
             if (new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL())
                     .intersects(arrayBricks.get(i).getX(), arrayBricks.get(i).getY(), arrayBricks.get(i).getWidth(),
                             arrayBricks.get(i).getHeight())) {
-                //            if(){//להשלים חישוב
-//                isCornerBrick=true;
-//            }
                 System.out.println("Hit the brick" + "i= " + i);
                 intersectsSound();
-                ball.updateBallWhenIntersects(isCornerBrick);
+                ball.updateBallWhenIntersects(IS_BRICK_CORNER);
                 calculatePoints(arrayBricks.get(i));
                 arrayBricks.remove(i);
                 repaint();
@@ -306,14 +317,9 @@ public class Game extends JPanel {//
 
     public void paintFunctions(Graphics g) {
         try {
-            Thread.sleep(1);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            for (Bricks bricks : this.arrayBricks) {
-                if (bricks != null)
-                    bricks.paint(g);
+            for (int i = 0; i < this.arrayBricks.size(); i++) {
+                if (arrayBricks.get(i) != null)
+                    arrayBricks.get(i).paint(g);
             }
         } catch (Exception e) {
             e.printStackTrace();

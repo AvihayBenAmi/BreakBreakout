@@ -7,9 +7,8 @@ public class Ball extends JPanel implements Runnable {//
     private float yDeltaBall = 400;
     private final int WIDTH_BALL = 13;
     private final int HEIGHT_BALL = 20;
-    //private float xDir = 0.2f;
     private float xDir;
-    private float yDir = 0.2f;
+    private float yDir = 0.25f;
     private boolean running;
     private boolean paused;
     private Thread updateBall;
@@ -82,17 +81,22 @@ public class Ball extends JPanel implements Runnable {//
         System.out.println("Ball resumed");
     }
 
-    public void updateBallWhenIntersects(Boolean isCorner) {
+    public void updateBallWhenIntersects(int isCorner) {
         Random random = new Random();
-        Float temp;
+        double temp = random.nextFloat(-1f, 1f);
         yDeltaBall += yDir - 1;
-        this.yDir *= -1.015;
-        do {
-            temp = random.nextFloat(-1, 1);
+        this.yDir *= -1.03;
+        if (isCorner == 1) {
+            this.xDir -= 0.2;
         }
-        while (temp == 0);
-        if(isCorner){
-
+        if (isCorner == 2) {
+            this.xDir += 0.2;
+        }
+        if (isCorner == 0) {
+            this.xDir *= temp;
+        }
+        if (isCorner == 3) {
+            this.xDir += 0.001;
         }
         System.out.println("update ball intersects");
     }
