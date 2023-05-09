@@ -9,6 +9,7 @@ public class Ball extends JPanel implements Runnable {//
     private final int HEIGHT_BALL = 20;
     private float xDir;
     private float yDir = 0.25f;
+    private final double RAISE_SPEED_BALL=-1.001;
     private boolean running;
     private boolean paused;
     private Thread updateBall;
@@ -85,7 +86,7 @@ public class Ball extends JPanel implements Runnable {//
         Random random = new Random();
         double temp = random.nextFloat(-1f, 1f);
         yDeltaBall += yDir - 1;
-        this.yDir *= -1.03;
+        this.yDir *= RAISE_SPEED_BALL;
         if (isCorner == 1) {
             this.xDir -= 0.2;
         }

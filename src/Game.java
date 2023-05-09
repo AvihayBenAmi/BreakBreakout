@@ -26,6 +26,7 @@ public class Game extends JPanel {//
     private final int FIRST_BRICK_LEFT_Y_CORNER = 30;
     private final int NUMBER_OF_BRICK_ROWS = 5;
     private final int NUMBER_OF_BRICK_COL = 10;
+    private final int CORNER_SIZE = 40;
     private final Color[] colors = {Color.YELLOW, Color.orange, Color.RED, Color.GREEN, Color.BLUE};
     private Ball ball;
     private Tray tray;
@@ -162,8 +163,8 @@ public class Game extends JPanel {//
         int parameter;
         Rectangle ballPosition = new Rectangle((int) ball.getxDeltaBall(), (int) ball.getyDeltaBall(), ball.getWIDTH_BALL(), ball.getHEIGHT_BALL());
         Rectangle trayPosition = new Rectangle(tray.getxDeltaPlayer(), tray.getyDeltaPlayer(), tray.getWidthTraySize(), tray.getHeightTraySize());
-        Rectangle trayCornerPositionLeft = new Rectangle(tray.getxDeltaPlayer(), tray.getyDeltaPlayer(), 5, tray.getHeightTraySize());
-        Rectangle trayCornerPositionRight = new Rectangle(tray.getxDeltaPlayer() + tray.getWidthTraySize() - 5, tray.getyDeltaPlayer(), 5, tray.getHeightTraySize());
+        Rectangle trayCornerPositionLeft = new Rectangle(tray.getxDeltaPlayer(), tray.getyDeltaPlayer(), CORNER_SIZE, tray.getHeightTraySize());
+        Rectangle trayCornerPositionRight = new Rectangle(tray.getxDeltaPlayer() + tray.getWidthTraySize() - CORNER_SIZE, tray.getyDeltaPlayer(), CORNER_SIZE, tray.getHeightTraySize());
         if (ballPosition.intersects(trayPosition)) {
             if (ballPosition.intersects(trayCornerPositionLeft)) {
                 parameter = IS_LEFT_CORNER_TRAY;

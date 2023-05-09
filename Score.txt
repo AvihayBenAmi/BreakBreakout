@@ -1,3 +1,3 @@
 Scores table 
 
-Name:  ds      Points:  120      Time:  127 Finished:      didn't  finish
+Name:  DDD      Points:  1005      Time:  57 Finished:      didn't  finish
