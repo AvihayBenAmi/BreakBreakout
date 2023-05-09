@@ -172,7 +172,7 @@ public class Game extends JPanel {//
                 System.out.println("Hit the right corner Tray");
                 parameter = IS_RIGHT_CORNER_TRAY;
             } else {
-                System.out.println("Hit the centre Tray");
+                System.out.println("Hit the center Tray");
                 parameter = IS_CENTER_TRAY;
             }
             intersectsSound();
