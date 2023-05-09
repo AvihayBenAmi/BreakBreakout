@@ -1,4 +1,3 @@
 Scores table 
 
-Name:  dddd      Points:  20      Time:  5 Finished:      didn't  finish
-Name:  ddd      Points:  910      Time:  16 Finished:      didn't  finish
+Name:  כככ      Points:  675      Time:  47 Finished:      didn't  finish
